@@ -8,8 +8,54 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  final TextEditingController namaController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+  TextEditingController();
+
   bool passwordVisible = false;
   bool confirmPasswordVisible = false;
+
+  void daftar() {
+    if (namaController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        confirmPasswordController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Semua data harus diisi'),
+        ),
+      );
+      return;
+    }
+
+    if (passwordController.text != confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Password dan konfirmasi password tidak sama'),
+        ),
+      );
+      return;
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Registrasi berhasil'),
+      ),
+    );
+
+    Navigator.pop(context);
+  }
+
+  @override
+  void dispose() {
+    namaController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +68,6 @@ class _SignupPageState extends State<SignupPage> {
               children: [
                 const SizedBox(height: 30),
 
-                // Logo
                 Image.asset(
                   'images/assets/logo.png',
                   width: 90,
@@ -52,8 +97,9 @@ class _SignupPageState extends State<SignupPage> {
 
                 const SizedBox(height: 30),
 
-                // Nama
+                // Nama Lengkap
                 TextField(
+                  controller: namaController,
                   decoration: InputDecoration(
                     labelText: 'Nama Lengkap',
                     hintText: 'Masukkan nama lengkap',
@@ -68,6 +114,7 @@ class _SignupPageState extends State<SignupPage> {
 
                 // Email
                 TextField(
+                  controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -83,6 +130,7 @@ class _SignupPageState extends State<SignupPage> {
 
                 // Password
                 TextField(
+                  controller: passwordController,
                   obscureText: !passwordVisible,
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -110,6 +158,7 @@ class _SignupPageState extends State<SignupPage> {
 
                 // Konfirmasi Password
                 TextField(
+                  controller: confirmPasswordController,
                   obscureText: !confirmPasswordVisible,
                   decoration: InputDecoration(
                     labelText: 'Konfirmasi Password',
@@ -141,7 +190,7 @@ class _SignupPageState extends State<SignupPage> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: daftar,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       foregroundColor: Colors.white,
