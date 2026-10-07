@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profilePage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -580,9 +581,9 @@ class _HomePageState extends State<HomePage> {
                     label: 'Profil',
                     selected: selectedMenu == 3,
                     onTap: () {
-                      setState(() {
-                        selectedMenu = 3;
-                      });
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const ProfilePage(),),
+                      );
                     },
                   ),
                 ],
