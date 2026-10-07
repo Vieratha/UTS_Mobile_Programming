@@ -5,6 +5,7 @@ import '../collection/collectionPage.dart';
 import '../collection/koleksiDimilikiPage.dart';
 import '../collection/koleksiRentalPage.dart';
 import '../detail/detailRumahLebah.dart';
+import '../detail/bacaNovelPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -399,6 +400,8 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment:
         CrossAxisAlignment.start,
         children: [
+
+          //Ini bagian Judul Continue Reading
           Row(
             children: [
               const Icon(
@@ -408,6 +411,7 @@ class _HomePageState extends State<HomePage> {
               ),
 
               const SizedBox(width: 7),
+
               const Expanded(
                 child: Text(
                   'Lanjutkan Membaca',
@@ -418,8 +422,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              TextButton(
-                onPressed: () {
+
+              //Ini bagian Tombol Lihat Semua
+              InkWell(
+                onTap: () {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(
                     const SnackBar(
@@ -429,15 +435,17 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 },
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                ),
-                child: const Text(
-                  'Lihat Semua →',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff2144a4),
+                borderRadius:
+                BorderRadius.circular(5),
+                child: const Padding(
+                  padding: EdgeInsets.all(4),
+                  child: Text(
+                    'Lihat Semua →',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff2144a4),
+                    ),
                   ),
                 ),
               ),
@@ -445,15 +453,19 @@ class _HomePageState extends State<HomePage> {
           ),
 
           const SizedBox(height: 9),
+
+          //Ini bagian Buku yang Sedang Dibaca
           Row(
             crossAxisAlignment:
             CrossAxisAlignment.center,
             children: [
+
+              //Ini bagian Cover Buku
               ClipRRect(
                 borderRadius:
                 BorderRadius.circular(6),
                 child: Image.asset(
-                  'images/assets/injustice2.jpg',
+                  'images/assets/WhetherYouCallMeADragon.png',
                   width: isMobile ? 74 : 89,
                   height: isMobile ? 108 : 129,
                   fit: BoxFit.cover,
@@ -463,13 +475,16 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: isMobile ? 12 : 15,
               ),
+
+              //Ini bagian Informasi Buku
               Expanded(
                 child: Column(
                   crossAxisAlignment:
                   CrossAxisAlignment.start,
                   children: [
+
                     const Text(
-                      'Injustice 2',
+                      'Whether You Call Me a Dragon or Not, Im Going to Sleep',
                       maxLines: 1,
                       overflow:
                       TextOverflow.ellipsis,
@@ -479,8 +494,9 @@ class _HomePageState extends State<HomePage> {
                         FontWeight.bold,
                       ),
                     ),
+
                     const Text(
-                      'Tom Taylor',
+                      'Aseutareuteseu',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.black54,
@@ -488,6 +504,8 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     const SizedBox(height: 12),
+
+                    //Ini bagian Progress Membaca
                     const Text(
                       '68% Selesai',
                       style: TextStyle(
@@ -499,6 +517,8 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     const SizedBox(height: 7),
+
+                    //Ini bagian Progress Bar
                     Container(
                       width: double.infinity,
                       height: 4,
@@ -527,18 +547,18 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     const SizedBox(height: 8),
+
+                    //Ini bagian Tombol Lanjutkan
                     SizedBox(
                       width: isMobile ? 115 : 130,
                       height: 32,
                       child: ElevatedButton.icon(
                         onPressed: () {
-                          ScaffoldMessenger.of(
+                          Navigator.push(
                             context,
-                          ).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'Membuka buku Injustice 2',
-                              ),
+                            MaterialPageRoute(
+                              builder: (context) =>
+                              const BacaNovelPage(),
                             ),
                           );
                         },
@@ -808,9 +828,12 @@ class _CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
+    return MouseRegion(
+      //Ini bagian agar cursor berubah menjadi cursor klik
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
         width: width,
         height: 82,
         decoration: BoxDecoration(
@@ -850,6 +873,7 @@ class _CategoryItem extends StatelessWidget {
             ),
           ],
         ),
+          ),
       ),
     );
   }
