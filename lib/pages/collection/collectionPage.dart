@@ -283,7 +283,7 @@ class KoleksiPage extends StatelessWidget {
 
                     //Ini bagian Tombol Panah Buku Dimiliki
                     MouseRegion(
-                      cursor: SystemMouseCursors.basic,
+                      cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -491,7 +491,7 @@ class KoleksiPage extends StatelessWidget {
 
                     //Ini bagian Tombol Panah Rental
                     MouseRegion(
-                      cursor: SystemMouseCursors.basic,
+                      cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
