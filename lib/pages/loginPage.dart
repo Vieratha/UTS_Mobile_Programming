@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signupPage.dart';
+import 'homePage.dart';
 
 class LoginPage extends StatefulWidget {
   final String? registeredEmail;
@@ -42,9 +43,10 @@ class _LoginPageState extends State<LoginPage> {
 
     if (emailController.text == widget.registeredEmail &&
         passwordController.text == widget.registeredPassword) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Login berhasil'),
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
         ),
       );
     } else {
