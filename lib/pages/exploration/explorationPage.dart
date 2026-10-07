@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../home/homePage.dart';
-import '../collection/collectionPage.dart';
+import '../collection/koleksiPage.dart';
 import '../profile/profilePage.dart';
 
 class ExplorationPage extends StatefulWidget {
@@ -705,7 +705,14 @@ class _ExplorationPageState extends State<ExplorationPage> {
               'images/assets/book_btn.png',
               label: 'Koleksi',
               selected: false,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const KoleksiPage(),
+                  ),
+                );
+              },
             ),
 
             //Ini bagian Profil
@@ -718,8 +725,7 @@ class _ExplorationPageState extends State<ExplorationPage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                    const ProfilePage(),
+                    builder: (context) => const ProfilePage(),
                   ),
                 );
               },

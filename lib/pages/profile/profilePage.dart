@@ -5,7 +5,7 @@ import 'informasiAkunPage.dart';
 import 'keamananPage.dart';
 import 'riwayatPembelianPage.dart';
 import 'pusatBantuanPage.dart';
-import '../collection/collectionPage.dart';
+import '../collection/koleksiPage.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -339,7 +339,7 @@ class _ProfilePageState extends State<ProfilePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _BottomMenu(
-              icon: 'images/assets/home_btn_blue.png',
+              icon: 'images/assets/home_btn.png',
               label: 'Beranda',
               selected: selectedMenu == 0,
               onTap: goToHome,
@@ -364,14 +364,17 @@ class _ProfilePageState extends State<ProfilePage> {
               label: 'Koleksi',
               selected: selectedMenu == 2,
               onTap: () {
-                setState(() {
-                  selectedMenu = 2;
-                });
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const KoleksiPage(),
+                  ),
+                );
               },
             ),
 
             _BottomMenu(
-              icon: 'images/assets/profile_btn.png',
+              icon: 'images/assets/profile_btn_blue.png',
               label: 'Profil',
               selected: selectedMenu == 3,
               onTap: () {
