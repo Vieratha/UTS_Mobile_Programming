@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'homePage.dart';
+import '../home/homePage.dart';
 import 'informasiAkunPage.dart';
 import 'keamananPage.dart';
 import 'riwayatPembelianPage.dart';

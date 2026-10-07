@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signupPage.dart';
-import 'homePage.dart';
+import '../home/homePage.dart';
 
 class LoginPage extends StatefulWidget {
   final String? registeredEmail;
