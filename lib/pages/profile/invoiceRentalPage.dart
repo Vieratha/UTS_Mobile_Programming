@@ -21,6 +21,7 @@ class InvoiceRentalPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
 
+      //Ini bagian AppBar
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -36,6 +37,7 @@ class InvoiceRentalPage extends StatelessWidget {
         ),
       ),
 
+      //Ini bagian Isi Invoice
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Container(
@@ -57,10 +59,7 @@ class InvoiceRentalPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              // =========================
-              // HEADER
-              // =========================
-
+              //Ini bagian Header Invoice
               Row(
                 children: [
                   Image.asset(
@@ -121,10 +120,7 @@ class InvoiceRentalPage extends StatelessWidget {
 
               const Divider(),
 
-              // =========================
-              // INFORMASI BUKU
-              // =========================
-
+              //Ini bagian Informasi Buku
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -190,10 +186,7 @@ class InvoiceRentalPage extends StatelessWidget {
 
               const SizedBox(height: 15),
 
-              // =========================
-              // INFORMASI PENYEWA
-              // =========================
-
+              //Ini bagian Informasi Penyewa
               const Text(
                 'Informasi Penyewa',
                 style: TextStyle(
@@ -223,10 +216,7 @@ class InvoiceRentalPage extends StatelessWidget {
 
               const Divider(),
 
-              // =========================
-              // DETAIL RENTAL
-              // =========================
-
+              //Ini bagian Detail Rental
               const Text(
                 'Detail Rental',
                 style: TextStyle(
@@ -258,10 +248,7 @@ class InvoiceRentalPage extends StatelessWidget {
 
               const Divider(),
 
-              // =========================
-              // TOTAL PEMBAYARAN
-              // =========================
-
+              //Ini bagian Total Pembayaran
               Row(
                 children: [
                   const Text(
@@ -300,10 +287,7 @@ class InvoiceRentalPage extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              // =========================
-              // THANK YOU
-              // =========================
-
+              //Ini bagian Pesan Berhasil
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(10),
@@ -367,11 +351,7 @@ class InvoiceRentalPage extends StatelessWidget {
   }
 }
 
-
-// =====================================================
-// RENTAL ROW
-// =====================================================
-
+//Ini bagian Baris Informasi Rental
 class _RentalRow extends StatelessWidget {
   final String title;
   final String value;

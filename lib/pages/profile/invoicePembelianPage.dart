@@ -21,6 +21,7 @@ class InvoicePembelianPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
 
+      //Ini bagian AppBar
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -36,6 +37,7 @@ class InvoicePembelianPage extends StatelessWidget {
         ),
       ),
 
+      //Ini bagian Isi Invoice
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Container(
@@ -57,10 +59,7 @@ class InvoicePembelianPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              // =========================
-              // HEADER INVOICE
-              // =========================
-
+              //Ini bagian Header Invoice
               Row(
                 children: [
                   Image.asset(
@@ -121,10 +120,7 @@ class InvoicePembelianPage extends StatelessWidget {
 
               const Divider(),
 
-              // =========================
-              // INFORMASI BUKU
-              // =========================
-
+              //Ini bagian Informasi Buku
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -190,10 +186,7 @@ class InvoicePembelianPage extends StatelessWidget {
 
               const SizedBox(height: 15),
 
-              // =========================
-              // INFORMASI PEMBELI
-              // =========================
-
+              //Ini bagian Informasi Pembeli
               const Text(
                 'Informasi Pembeli',
                 style: TextStyle(
@@ -223,10 +216,7 @@ class InvoicePembelianPage extends StatelessWidget {
 
               const Divider(),
 
-              // =========================
-              // TOTAL PEMBAYARAN
-              // =========================
-
+              //Ini bagian Total Pembayaran
               Row(
                 children: [
                   const Text(
@@ -265,10 +255,7 @@ class InvoicePembelianPage extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              // =========================
-              // THANK YOU
-              // =========================
-
+              //Ini bagian Pesan Berhasil
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(10),
@@ -332,11 +319,7 @@ class InvoicePembelianPage extends StatelessWidget {
   }
 }
 
-
-// =====================================================
-// INVOICE ROW
-// =====================================================
-
+//Ini bagian Baris Informasi Invoice
 class _InvoiceRow extends StatelessWidget {
   final String title;
   final String value;

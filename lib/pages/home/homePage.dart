@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../profile/profilePage.dart';
 import '../exploration/explorationPage.dart';
 import '../collection/collectionPage.dart';
+import '../collection/koleksiDimilikiPage.dart';
+import '../collection/koleksiRentalPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -756,9 +758,12 @@ class _HomePageState extends State<HomePage> {
               label: 'Koleksi',
               selected: selectedMenu == 2,
               onTap: () {
-                setState(() {
-                  selectedMenu = 2;
-                });
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const KoleksiPage(),
+                  ),
+                );
               },
             ),
             //Ini Profile
@@ -1118,38 +1123,25 @@ class _CollectionButton extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text(
-                  label,
-                  textAlign: TextAlign.center,
-                ),
-                content: Text(
-                  label == 'Buku Dimiliki'
-                      ? 'Menampilkan buku yang kamu miliki.'
-                      : 'Menampilkan buku yang sedang kamu rental.',
-                  textAlign: TextAlign.center,
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      'OK',
-                      style: TextStyle(
-                        color: Color(0xff4f3886),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            },
-          );
+          if (label == 'Buku Dimiliki') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                const KoleksiDimilikiPage(),
+              ),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                const KoleksiRentalPage(),
+              ),
+            );
+          }
         },
+
         borderRadius: BorderRadius.circular(7),
         child: Container(
           width: double.infinity,

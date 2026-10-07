@@ -192,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                                 child: ClipOval(
                                   child: Image.asset(
-                                    'images/assets/profile.png',
+                                    'images/assets/uriel.png',
                                     fit: BoxFit.cover,
                                     errorBuilder:
                                         (context, error, stackTrace) {

@@ -9,6 +9,8 @@ class RiwayatRentalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
+      //Ini bagian AppBar
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -22,14 +24,18 @@ class RiwayatRentalPage extends StatelessWidget {
           ),
         ),
       ),
+
+      //Ini bagian Isi Halaman
       body: Column(
         children: [
           const SizedBox(height: 10),
 
+          //Ini bagian Tab Riwayat Transaksi
           Row(
             children: [
+              //Ini bagian Tab Pembelian
               Expanded(
-                child: GestureDetector(
+                child: InkWell(
                   onTap: () {
                     Navigator.pushReplacement(
                       context,
@@ -52,6 +58,7 @@ class RiwayatRentalPage extends StatelessWidget {
                 ),
               ),
 
+              //Ini bagian Tab Rental
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -76,6 +83,7 @@ class RiwayatRentalPage extends StatelessWidget {
             ],
           ),
 
+          //Ini bagian Daftar Riwayat Rental
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(16),
@@ -113,6 +121,7 @@ class RiwayatRentalPage extends StatelessWidget {
   }
 }
 
+//Ini bagian Kartu Riwayat Rental
 class _RentalTransactionCard extends StatelessWidget {
   final String image;
   final String title;
@@ -141,6 +150,7 @@ class _RentalTransactionCard extends StatelessWidget {
       ),
       child: Row(
         children: [
+          //Ini bagian Gambar Buku
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
             child: Image.asset(
@@ -161,10 +171,12 @@ class _RentalTransactionCard extends StatelessWidget {
 
           const SizedBox(width: 10),
 
+          //Ini bagian Informasi Buku
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //Ini bagian Status Rental
                 Align(
                   alignment: Alignment.topRight,
                   child: Container(
@@ -187,6 +199,7 @@ class _RentalTransactionCard extends StatelessWidget {
                   ),
                 ),
 
+                //Ini bagian Judul Buku
                 Text(
                   title,
                   style: const TextStyle(
@@ -195,6 +208,7 @@ class _RentalTransactionCard extends StatelessWidget {
                   ),
                 ),
 
+                //Ini bagian Nama Penulis
                 Text(
                   author,
                   style: const TextStyle(
@@ -205,6 +219,7 @@ class _RentalTransactionCard extends StatelessWidget {
 
                 const SizedBox(height: 12),
 
+                //Ini bagian Durasi Rental dan Harga
                 Row(
                   children: [
                     Container(
@@ -239,6 +254,7 @@ class _RentalTransactionCard extends StatelessWidget {
 
                 const SizedBox(height: 10),
 
+                //Ini bagian Tanggal dan Invoice
                 Row(
                   children: [
                     Text(
@@ -251,7 +267,8 @@ class _RentalTransactionCard extends StatelessWidget {
 
                     const Spacer(),
 
-                    GestureDetector(
+                    //Ini bagian Tombol Lihat Invoice
+                    InkWell(
                       onTap: () {
                         Navigator.push(
                           context,

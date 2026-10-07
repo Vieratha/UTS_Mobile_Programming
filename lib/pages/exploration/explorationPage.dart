@@ -704,7 +704,14 @@ class _ExplorationPageState extends State<ExplorationPage> {
               'images/assets/book_btn.png',
               label: 'Koleksi',
               selected: false,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const KoleksiPage(),
+                  ),
+                );
+              },
             ),
 
             //Ini bagian Profil
@@ -717,8 +724,7 @@ class _ExplorationPageState extends State<ExplorationPage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                    const ProfilePage(),
+                    builder: (context) => const ProfilePage(),
                   ),
                 );
               },
