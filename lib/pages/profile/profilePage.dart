@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../home/homePage.dart';
+import '../exploration/explorationPage.dart';
 import 'informasiAkunPage.dart';
 import 'keamananPage.dart';
 import 'riwayatPembelianPage.dart';
 import 'pusatBantuanPage.dart';
+import '../collection/collectionPage.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -348,9 +350,12 @@ class _ProfilePageState extends State<ProfilePage> {
               label: 'Eksplorasi',
               selected: selectedMenu == 1,
               onTap: () {
-                setState(() {
-                  selectedMenu = 1;
-                });
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExplorationPage(),
+                  ),
+                );
               },
             ),
 

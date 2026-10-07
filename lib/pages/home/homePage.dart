@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../profile/profilePage.dart';
+import '../exploration/explorationPage.dart';
+import '../collection/collectionPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -738,9 +740,12 @@ class _HomePageState extends State<HomePage> {
               label: 'Eksplorasi',
               selected: selectedMenu == 1,
               onTap: () {
-                setState(() {
-                  selectedMenu = 1;
-                });
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExplorationPage(),
+                  ),
+                );
               },
             ),
             //Ini Collection
@@ -764,14 +769,10 @@ class _HomePageState extends State<HomePage> {
               label: 'Profil',
               selected: selectedMenu == 3,
               onTap: () {
-                setState(() {
-                  selectedMenu = 3;
-                });
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                    const ProfilePage(),
+                    builder: (context) => const ProfilePage(),
                   ),
                 );
               },
@@ -1440,8 +1441,11 @@ class _BottomMenu
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
       child: SizedBox(
         width: 85,
         child: Column(
@@ -1455,6 +1459,7 @@ class _BottomMenu
             ),
 
             const SizedBox(height: 2),
+
             Text(
               label,
               style: TextStyle(
@@ -1463,9 +1468,7 @@ class _BottomMenu
                     ? FontWeight.bold
                     : FontWeight.normal,
                 color: selected
-                    ? const Color(
-                  0xff005dff,
-                )
+                    ? const Color(0xff005dff)
                     : Colors.grey,
               ),
             ),
