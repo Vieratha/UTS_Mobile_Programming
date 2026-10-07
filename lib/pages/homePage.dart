@@ -154,11 +154,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
     final bool isMobile = screenWidth < 600;
     final bool isTablet =
         screenWidth >= 600 && screenWidth < 1000;
-
     double contentWidth = screenWidth;
 
     if (screenWidth > 1100) {
@@ -187,32 +185,26 @@ class _HomePageState extends State<HomePage> {
                         CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 15),
-
                           _buildHeader(isMobile),
 
                           const SizedBox(height: 20),
-
                           _buildGreeting(),
 
                           const SizedBox(height: 14),
-
                           _buildContinueCard(isMobile),
 
                           const SizedBox(height: 20),
-
                           _buildCategorySection(
                             isMobile,
                             isTablet,
                           ),
 
                           const SizedBox(height: 16),
-
                           _buildRentalAndCollection(
                             isMobile,
                           ),
 
                           const SizedBox(height: 25),
-
                           _BookSection(
                             title: '🔥 Buku Populer',
                             books: bukuPopuler,
@@ -222,7 +214,6 @@ class _HomePageState extends State<HomePage> {
                           ),
 
                           const SizedBox(height: 25),
-
                           _BookSection(
                             title: 'Rekomendasi Untuk Kamu',
                             books: rekomendasi,
@@ -232,7 +223,6 @@ class _HomePageState extends State<HomePage> {
                           ),
 
                           const SizedBox(height: 25),
-
                           _BookSection(
                             title: 'Bisnis & Investasi',
                             books: bisnis,
@@ -242,7 +232,6 @@ class _HomePageState extends State<HomePage> {
                           ),
 
                           const SizedBox(height: 25),
-
                           _BookSection(
                             title: 'Sastra & Fiksi',
                             books: sastra,
@@ -252,7 +241,6 @@ class _HomePageState extends State<HomePage> {
                           ),
 
                           const SizedBox(height: 25),
-
                           _BookSection(
                             title: 'Lainnya seperti Injustice 2',
                             books: sepertiInjustice,
@@ -269,7 +257,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-
             _buildBottomNavigation(isMobile),
           ],
         ),
@@ -277,10 +264,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // =====================================================
-  // HEADER
-  // =====================================================
-
+ //Ini bagian Header dari Libra Mobile
   Widget _buildHeader(bool isMobile) {
     return Row(
       children: [
@@ -291,7 +275,6 @@ class _HomePageState extends State<HomePage> {
         ),
 
         const SizedBox(width: 10),
-
         const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -317,7 +300,6 @@ class _HomePageState extends State<HomePage> {
         ),
 
         const Spacer(),
-
         GestureDetector(
           onTap: () {
             showDialog(
@@ -359,10 +341,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // =====================================================
-  // GREETING
-  // =====================================================
-
+  //Ini bagian Greetings untuk user
   Widget _buildGreeting() {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -376,7 +355,6 @@ class _HomePageState extends State<HomePage> {
         ),
 
         SizedBox(height: 3),
-
         Text(
           'Temukan buku terbaik untukmu hari ini.',
           style: TextStyle(
@@ -388,10 +366,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // =====================================================
-  // CONTINUE READING
-  // =====================================================
-
+  //Ini bagian "Continue Reading", dengan buku terakhir kali dibaca
   Widget _buildContinueCard(bool isMobile) {
     return Container(
       width: double.infinity,
@@ -428,7 +403,6 @@ class _HomePageState extends State<HomePage> {
               ),
 
               const SizedBox(width: 7),
-
               const Expanded(
                 child: Text(
                   'Lanjutkan Membaca',
@@ -439,7 +413,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-
               TextButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context)
@@ -467,7 +440,6 @@ class _HomePageState extends State<HomePage> {
           ),
 
           const SizedBox(height: 9),
-
           Row(
             crossAxisAlignment:
             CrossAxisAlignment.center,
@@ -486,7 +458,6 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 width: isMobile ? 12 : 15,
               ),
-
               Expanded(
                 child: Column(
                   crossAxisAlignment:
@@ -503,7 +474,6 @@ class _HomePageState extends State<HomePage> {
                         FontWeight.bold,
                       ),
                     ),
-
                     const Text(
                       'Tom Taylor',
                       style: TextStyle(
@@ -513,7 +483,6 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     const SizedBox(height: 12),
-
                     const Text(
                       '68% Selesai',
                       style: TextStyle(
@@ -525,7 +494,6 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     const SizedBox(height: 7),
-
                     Container(
                       width: double.infinity,
                       height: 4,
@@ -554,7 +522,6 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     const SizedBox(height: 8),
-
                     SizedBox(
                       width: isMobile ? 115 : 130,
                       height: 32,
@@ -611,49 +578,39 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // =====================================================
-  // CATEGORY
-  // =====================================================
-
+  //Ini bagian "Category" atau genre
   Widget _buildCategorySection(
       bool isMobile,
       bool isTablet,
       ) {
     final screenWidth =
         MediaQuery.of(context).size.width;
-
     double categoryWidth;
 
     if (isMobile) {
       categoryWidth =
           (screenWidth - 24 - 40) / 5;
-
       if (categoryWidth < 70) {
         categoryWidth = 70;
       }
-
       if (categoryWidth > 82) {
         categoryWidth = 82;
       }
     } else if (isTablet) {
       categoryWidth =
           (screenWidth - 32 - 40) / 5;
-
       if (categoryWidth < 90) {
         categoryWidth = 90;
       }
-
       if (categoryWidth > 110) {
         categoryWidth = 110;
       }
     } else {
       categoryWidth =
           (screenWidth - 32 - 40) / 5;
-
       if (categoryWidth < 110) {
         categoryWidth = 110;
       }
-
       if (categoryWidth > 150) {
         categoryWidth = 150;
       }
@@ -672,7 +629,6 @@ class _HomePageState extends State<HomePage> {
         ),
 
         const SizedBox(height: 9),
-
         Row(
           children: [
             for (int i = 0;
@@ -708,10 +664,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // =====================================================
-  // RENTAL + COLLECTION
-  // =====================================================
-
+  //Ini bagian Rental dan Koleksi
   Widget _buildRentalAndCollection(
       bool isMobile,
       ) {
@@ -734,7 +687,6 @@ class _HomePageState extends State<HomePage> {
         ),
 
         SizedBox(width: 12),
-
         Expanded(
           child: _CollectionCard(),
         ),
@@ -742,10 +694,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // =====================================================
-  // BOTTOM NAVIGATION
-  // =====================================================
-
+  //Ini bagian navbar bawah
   Widget _buildBottomNavigation(
       bool isMobile,
       ) {
@@ -768,6 +717,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment:
           MainAxisAlignment.spaceAround,
           children: [
+            //Ini Home
             _BottomMenu(
               icon: selectedMenu == 0
                   ? 'images/assets/home_btn_blue.png'
@@ -780,7 +730,7 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-
+            //Ini Search/Exploration
             _BottomMenu(
               icon: selectedMenu == 1
                   ? 'images/assets/search_btn_blue.png'
@@ -793,11 +743,11 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-
+            //Ini Collection
             _BottomMenu(
               icon: selectedMenu == 2
-                  ? 'images/assets/books_collection_blue.png'
-                  : 'images/assets/books_collection.png',
+                  ? 'images/assets/book_btn_blue.png'
+                  : 'images/assets/book_btn.png',
               label: 'Koleksi',
               selected: selectedMenu == 2,
               onTap: () {
@@ -806,7 +756,7 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-
+            //Ini Profile
             _BottomMenu(
               icon: selectedMenu == 3
                   ? 'images/assets/profile_btn_blue.png'
@@ -817,7 +767,6 @@ class _HomePageState extends State<HomePage> {
                 setState(() {
                   selectedMenu = 3;
                 });
-
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -834,11 +783,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-
-// =====================================================
-// CATEGORY ITEM
-// =====================================================
-
+//Ini bagian kategori item
 class _CategoryItem extends StatelessWidget {
   final String nama;
   final String gambar;
@@ -885,7 +830,6 @@ class _CategoryItem extends StatelessWidget {
             ),
 
             const SizedBox(height: 4),
-
             Text(
               nama,
               maxLines: 1,
@@ -904,11 +848,7 @@ class _CategoryItem extends StatelessWidget {
   }
 }
 
-
-// =====================================================
-// RENTAL CARD
-// =====================================================
-
+//Ini bagian dari Rental Aktif yang berisi tentang rental yang ada dan masih terdapat sisa waktu
 class _RentalCard
     extends StatelessWidget {
   const _RentalCard();
@@ -950,7 +890,6 @@ class _RentalCard
                   ),
                 ),
               ),
-
               TextButton(
                 onPressed: () {
                   ScaffoldMessenger.of(
@@ -976,7 +915,6 @@ class _RentalCard
           ),
 
           const SizedBox(height: 1),
-
           Expanded(
             child: Row(
               children: [
@@ -992,7 +930,6 @@ class _RentalCard
                 ),
 
                 const SizedBox(width: 12),
-
                 Expanded(
                   child: Container(
                     height: 115,
@@ -1030,7 +967,6 @@ class _RentalCard
                         ),
 
                         const SizedBox(height: 5),
-
                         const Text(
                           '⏱  5 Hari',
                           style: TextStyle(
@@ -1041,7 +977,6 @@ class _RentalCard
                         ),
 
                         const Spacer(),
-
                         SizedBox(
                           width:
                           double.infinity,
@@ -1103,11 +1038,7 @@ class _RentalCard
   }
 }
 
-
-// =====================================================
-// COLLECTION CARD
-// =====================================================
-
+//Ini bagian "Koleksi Saya" yang berisi bagian "Buku Dimiliki" dan "Rental Aktif"
 class _CollectionCard
     extends StatelessWidget {
   const _CollectionCard();
@@ -1147,7 +1078,6 @@ class _CollectionCard
           ),
 
           const SizedBox(height: 10),
-
           Expanded(
             child: Column(
               children: [
@@ -1158,7 +1088,6 @@ class _CollectionCard
                 ),
 
                 const SizedBox(height: 8),
-
                 _CollectionButton(
                   icon:
                   'images/assets/callender_collection.png',
@@ -1173,13 +1102,8 @@ class _CollectionCard
   }
 }
 
-
-// =====================================================
-// COLLECTION BUTTON
-// =====================================================
-
-class _CollectionButton
-    extends StatefulWidget {
+//Ini bagian button untuk koleksi ketika diinteraksi
+class _CollectionButton extends StatelessWidget {
   final String icon;
   final String label;
 
@@ -1189,152 +1113,83 @@ class _CollectionButton
   });
 
   @override
-  State<_CollectionButton> createState() =>
-      _CollectionButtonState();
-}
-
-class _CollectionButtonState
-    extends State<_CollectionButton> {
-  bool isHovering = false;
-
-  @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: MouseRegion(
-        cursor:
-        SystemMouseCursors.click,
-        onEnter: (_) {
-          setState(() {
-            isHovering = true;
-          });
-        },
-        onExit: (_) {
-          setState(() {
-            isHovering = false;
-          });
-        },
-        child: GestureDetector(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: Text(
-                    widget.label,
-                    textAlign:
-                    TextAlign.center,
-                  ),
-                  content: Text(
-                    widget.label ==
-                        'Buku Dimiliki'
-                        ? 'Menampilkan buku yang kamu miliki.'
-                        : 'Menampilkan buku yang sedang kamu rental.',
-                    textAlign:
-                    TextAlign.center,
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(
-                          context,
-                        );
-                      },
-                      child: const Text(
-                        'OK',
-                        style: TextStyle(
-                          color:
-                          Color(0xff4f3886),
-                          fontWeight:
-                          FontWeight.bold,
-                        ),
+      child: InkWell(
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(
+                  label,
+                  textAlign: TextAlign.center,
+                ),
+                content: Text(
+                  label == 'Buku Dimiliki'
+                      ? 'Menampilkan buku yang kamu miliki.'
+                      : 'Menampilkan buku yang sedang kamu rental.',
+                  textAlign: TextAlign.center,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'OK',
+                      style: TextStyle(
+                        color: Color(0xff4f3886),
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                );
-              },
-            );
-          },
-          child: AnimatedContainer(
-            duration:
-            const Duration(
-              milliseconds: 150,
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        borderRadius: BorderRadius.circular(7),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(7),
+            border: Border.all(
+              color: const Color(0xffdfd0f2),
             ),
-            width: double.infinity,
-            padding:
-            const EdgeInsets.symmetric(
-              horizontal: 10,
-            ),
-            decoration: BoxDecoration(
-              color: isHovering
-                  ? const Color(
-                0xffeee3ff,
-              )
-                  : Colors.white,
-              borderRadius:
-              BorderRadius.circular(7),
-              border: Border.all(
-                color: isHovering
-                    ? const Color(
-                  0xffa98bd6,
-                )
-                    : const Color(
-                  0xffdfd0f2,
+          ),
+          child: Row(
+            children: [
+              Image.asset(
+                icon,
+                width: 32,
+                height: 32,
+              ),
+
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff4f3886),
+                  ),
                 ),
               ),
-              boxShadow: isHovering
-                  ? const [
-                BoxShadow(
-                  color:
-                  Colors.black12,
-                  blurRadius: 4,
-                  offset:
-                  Offset(0, 2),
-                ),
-              ]
-                  : [],
-            ),
-            child: Row(
-              children: [
-                Image.asset(
-                  widget.icon,
-                  width: 32,
-                  height: 32,
-                ),
 
-                const SizedBox(
-                  width: 10,
-                ),
-
-                Expanded(
-                  child: Text(
-                    widget.label,
-                    maxLines: 1,
-                    overflow:
-                    TextOverflow.ellipsis,
-                    style:
-                    const TextStyle(
-                      fontSize: 14,
-                      fontWeight:
-                      FontWeight.bold,
-                      color:
-                      Color(0xff4f3886),
-                    ),
-                  ),
-                ),
-
-                Icon(
-                  Icons.chevron_right,
-                  color: isHovering
-                      ? const Color(
-                    0xff5b3b91,
-                  )
-                      : const Color(
-                    0xff4f3886,
-                  ),
-                  size: 24,
-                ),
-              ],
-            ),
+              const Icon(
+                Icons.chevron_right,
+                color: Color(0xff4f3886),
+                size: 24,
+              ),
+            ],
           ),
         ),
       ),
@@ -1342,13 +1197,8 @@ class _CollectionButtonState
   }
 }
 
-
-// =====================================================
-// BOOK SECTION
-// =====================================================
-
-class _BookSection
-    extends StatelessWidget {
+//Ini bagian dari section-section buku
+class _BookSection extends StatelessWidget {
   final String title;
   final List<Map<String, String>> books;
   final bool showSeeAll;
@@ -1367,7 +1217,6 @@ class _BookSection
   Widget build(BuildContext context) {
     final screenWidth =
         MediaQuery.of(context).size.width;
-
     final availableWidth =
     screenWidth > 1100
         ? 1100 - 32
@@ -1375,36 +1224,16 @@ class _BookSection
         (isMobile ? 24 : 32);
 
     double gap;
-    double cardWidth;
-
     if (isMobile) {
       gap = 8;
-
-      cardWidth =
-          (availableWidth - (gap * 3)) / 4;
-
-      if (cardWidth < 75) {
-        cardWidth = 75;
-      }
     } else if (isTablet) {
       gap = 12;
-
-      cardWidth =
-          (availableWidth - (gap * 3)) / 4;
-
-      if (cardWidth > 135) {
-        cardWidth = 135;
-      }
     } else {
       gap = 24;
-
-      cardWidth =
-          (availableWidth - (gap * 3)) / 4;
-
-      if (cardWidth > 175) {
-        cardWidth = 175;
-      }
     }
+
+    final cardWidth =
+        (availableWidth - (gap * 3)) / 4;
 
     return Column(
       crossAxisAlignment:
@@ -1457,7 +1286,6 @@ class _BookSection
         ),
 
         const SizedBox(height: 7),
-
         Row(
           crossAxisAlignment:
           CrossAxisAlignment.start,
@@ -1468,26 +1296,23 @@ class _BookSection
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(
-                    right:
-                    i == books.length - 1
+                    left: i == 0
                         ? 0
                         : gap / 2,
-                    left:
-                    i == 0
+                    right: i ==
+                        books.length - 1
                         ? 0
                         : gap / 2,
                   ),
-                  child: Center(
-                    child: _BookCard(
-                      judul:
-                      books[i]['judul']!,
-                      penulis:
-                      books[i]['penulis']!,
-                      gambar:
-                      books[i]['gambar']!,
-                      width: cardWidth,
-                      isMobile: isMobile,
-                    ),
+                  child: _BookCard(
+                    judul:
+                    books[i]['judul']!,
+                    penulis:
+                    books[i]['penulis']!,
+                    gambar:
+                    books[i]['gambar']!,
+                    width: cardWidth,
+                    isMobile: isMobile,
                   ),
                 ),
               ),
@@ -1498,11 +1323,7 @@ class _BookSection
   }
 }
 
-
-// =====================================================
-// BOOK CARD
-// =====================================================
-
+//Ini bagian book card yg membungkus buku
 class _BookCard
     extends StatelessWidget {
   final String judul;
@@ -1569,7 +1390,6 @@ class _BookCard
             ),
 
             const SizedBox(height: 5),
-
             Text(
               judul,
               maxLines: 1,
@@ -1584,7 +1404,6 @@ class _BookCard
             ),
 
             const SizedBox(height: 1),
-
             Text(
               penulis,
               maxLines: 1,
@@ -1604,11 +1423,7 @@ class _BookCard
   }
 }
 
-
-// =====================================================
-// BOTTOM MENU
-// =====================================================
-
+//Ini bagian tombol menu
 class _BottomMenu
     extends StatelessWidget {
   final String icon;
@@ -1640,7 +1455,6 @@ class _BottomMenu
             ),
 
             const SizedBox(height: 2),
-
             Text(
               label,
               style: TextStyle(
