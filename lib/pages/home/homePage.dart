@@ -1459,7 +1459,6 @@ class _BottomMenu
             ),
 
             const SizedBox(height: 2),
-
             Text(
               label,
               style: TextStyle(

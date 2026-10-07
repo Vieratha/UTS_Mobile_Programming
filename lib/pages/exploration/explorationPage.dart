@@ -293,11 +293,9 @@ class _ExplorationPageState extends State<ExplorationPage> {
           ),
 
           const SizedBox(height: 15),
-          ...daftarBuku
-              .take(3)
-              .map(
-                (buku) => bukuListTile(buku),
-          ),
+          bukuListTile(daftarBuku[0]),
+          bukuListTile(daftarBuku[1]),
+          bukuListTile(daftarBuku[2]),
         ],
       ),
     );
@@ -344,11 +342,9 @@ class _ExplorationPageState extends State<ExplorationPage> {
             ),
 
             const SizedBox(height: 15),
-            ...daftarBuku
-                .take(3)
-                .map(
-                  (buku) => bukuListTile(buku),
-            ),
+            bukuListTile(daftarBuku[0]),
+            bukuListTile(daftarBuku[1]),
+            bukuListTile(daftarBuku[2]),
           ],
         ),
       );
@@ -405,9 +401,13 @@ class _ExplorationPageState extends State<ExplorationPage> {
             ),
 
           //Ini bagian daftar hasil pencarian
+          //Ini bagian daftar hasil pencarian
           if (hasil.isNotEmpty)
-            ...hasil.map(
-                  (buku) => bukuListTile(buku),
+            ListView(
+              children: [
+                for (int i = 0; i < hasil.length; i++)
+                  bukuListTile(hasil[i]),
+              ],
             ),
         ],
       ),
