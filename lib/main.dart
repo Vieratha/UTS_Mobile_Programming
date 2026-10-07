@@ -31,36 +31,41 @@ class PageAwal extends StatelessWidget {
           child: Column(
             children: [
               const Spacer(),
-
               Image.asset(
                 'images/assets/logo.png',
                 width: 100,
                 height: 100,
               ),
 
-              const SizedBox(height: 20),
-
-              const Text(
-                'Libra',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
+              const SizedBox(height: 2),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Libra',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      height: 1.0,
+                    ),
+                  ),
+                  const Text(
+                    'mobile',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.blue,
+                      letterSpacing: 7,
+                      height: 1.0,
+                    ),
+                  ),
+                ],
               ),
 
+              const SizedBox(height: 10),
               const Text(
-                'Digital Library',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
-              ),
-
-              const SizedBox(height: 40),
-
-              const Text(
-                'Selamat Datang di Libra',
+                'Selamat Datang di Libra Mobile',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25,
@@ -68,8 +73,7 @@ class PageAwal extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 10),
-
+              const SizedBox(height: 1),
               const Text(
                 'Temukan, baca, dan nikmati berbagai koleksi buku digital dengan mudah.',
                 textAlign: TextAlign.center,
@@ -80,7 +84,6 @@ class PageAwal extends StatelessWidget {
               ),
 
               const Spacer(),
-
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -111,7 +114,6 @@ class PageAwal extends StatelessWidget {
               ),
 
               const SizedBox(height: 15),
-
               SizedBox(
                 width: double.infinity,
                 height: 50,

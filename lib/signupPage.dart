@@ -69,7 +69,22 @@ class _SignupPageState extends State<SignupPage> {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
-                const SizedBox(height: 30),
+                const SizedBox(height: 15),
+                // Tombol Back
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      size: 28,
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 5),
                 Image.asset(
                   'images/assets/logo.png',
                   width: 90,
