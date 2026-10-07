@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'loginPage.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+  final bool fromLogin;
+  const SignupPage({
+      super.key,
+      this.fromLogin = false,
+  });
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -63,6 +67,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffeef6ff),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -75,7 +80,11 @@ class _SignupPageState extends State<SignupPage> {
                   alignment: Alignment.centerLeft,
                   child: IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      if (widget.fromLogin) {
+                        Navigator.pop(context);
+                      } else {
+                        Navigator.pop(context);
+                      }
                     },
                     icon: const Icon(
                       Icons.arrow_back,
@@ -258,7 +267,12 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ),
+                        );
                       },
                       child: const Text(
                         'Masuk',

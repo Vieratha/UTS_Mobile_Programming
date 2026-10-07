@@ -66,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffeef6ff),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -227,10 +228,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SignupPage(),
+                            builder: (context) => const SignupPage(
+                              fromLogin: true,
+                            ),
                           ),
                         );
                       },
