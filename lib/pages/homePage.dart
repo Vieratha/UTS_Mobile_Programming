@@ -10,6 +10,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedMenu = 0;
+  String? selectedCategory;
+  String? selectedCollection;
+
   final List<Map<String, String>> kategori = [
     {
       'nama': 'Fiksi',
@@ -64,7 +67,7 @@ class _HomePageState extends State<HomePage> {
     },
     {
       'judul': 'Time Management',
-      'penulis': 'Connor Whiteley',
+      'penulis': 'Sudhir Dixit',
       'gambar': 'images/assets/timemanagement.webp',
     },
     {
@@ -150,447 +153,682 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    final bool isMobile = screenWidth < 600;
+    final bool isTablet =
+        screenWidth >= 600 && screenWidth < 1000;
+
+    double contentWidth = screenWidth;
+
+    if (screenWidth > 1100) {
+      contentWidth = 1100;
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.only(bottom: 110),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 15),
-                  //Logo dan Notif
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'images/assets/logo.png',
-                          width: 48,
-                          height: 48,
-                        ),
-
-                        const SizedBox(width: 12),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Libra',
-                              style: TextStyle(
-                                fontSize: 29,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff0d004e),
-                                height: 0.9,
-                              ),
-                            ),
-                            const Text(
-                              'mobile',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff005eff),
-                                letterSpacing: 3,
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        const Spacer(),
-                        Image.asset(
-                          'images/assets/Lonceng.png',
-                          width: 40,
-                          height: 40,
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hi, Pir!',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 3),
-                        Text(
-                          'Temukan buku terbaik untukmu hari ini.',
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 15),
-
-                  // =========================
-                  // LANJUTKAN MEMBACA
-                  // =========================
-
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 28),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.menu_book,
-                          color: Color(0xff2144a4),
-                          size: 22,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Lanjutkan Membaca',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff2144a4),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 5),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 13),
-                    child: Container(
-                      height: 176,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        gradient: const LinearGradient(
-                          begin: Alignment.bottomLeft,
-                          end: Alignment.topRight,
-                          colors: [
-                            Color(0xfff3f3f3),
-                            Color(0xff5191ff),
-                          ],
-                        ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(
+                  bottom: isMobile ? 10 : 15,
+                ),
+                child: Center(
+                  child: SizedBox(
+                    width: contentWidth,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: isMobile ? 12 : 16,
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 89,
-                              height: 129,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    blurRadius: 4,
-                                    color: Colors.black54,
-                                  ),
-                                ],
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(6),
-                                child: Image.asset(
-                                  'images/assets/injustice2.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
+                      child: Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 15),
 
-                            const SizedBox(width: 15),
+                          _buildHeader(isMobile),
 
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Injustice 2',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                          const SizedBox(height: 20),
 
-                                  const Text(
-                                    'Tom Taylor',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.black54,
-                                    ),
-                                  ),
+                          _buildGreeting(),
 
-                                  const SizedBox(height: 18),
+                          const SizedBox(height: 14),
 
-                                  const Text(
-                                    '68% Selesai',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xff005dff),
-                                    ),
-                                  ),
+                          _buildContinueCard(isMobile),
 
-                                  const SizedBox(height: 8),
+                          const SizedBox(height: 20),
 
-                                  Container(
-                                    height: 4,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey.shade300,
-                                      borderRadius:
-                                      BorderRadius.circular(10),
-                                    ),
-                                    child: FractionallySizedBox(
-                                      alignment: Alignment.centerLeft,
-                                      widthFactor: 0.68,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xff005dff),
-                                          borderRadius:
-                                          BorderRadius.circular(10),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                          _buildCategorySection(
+                            isMobile,
+                            isTablet,
+                          ),
 
-                                  const SizedBox(height: 9),
+                          const SizedBox(height: 16),
 
-                                  SizedBox(
-                                    height: 32,
-                                    width: 130,
-                                    child: ElevatedButton.icon(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.play_arrow,
-                                        size: 16,
-                                      ),
-                                      label: const Text(
-                                        'Lanjutkan',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                        const Color(0xff005dff),
-                                        foregroundColor: Colors.white,
-                                        padding: EdgeInsets.zero,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(7),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                          _buildRentalAndCollection(
+                            isMobile,
+                          ),
+
+                          const SizedBox(height: 25),
+
+                          _BookSection(
+                            title: '🔥 Buku Populer',
+                            books: bukuPopuler,
+                            showSeeAll: true,
+                            isMobile: isMobile,
+                            isTablet: isTablet,
+                          ),
+
+                          const SizedBox(height: 25),
+
+                          _BookSection(
+                            title: 'Rekomendasi Untuk Kamu',
+                            books: rekomendasi,
+                            showSeeAll: true,
+                            isMobile: isMobile,
+                            isTablet: isTablet,
+                          ),
+
+                          const SizedBox(height: 25),
+
+                          _BookSection(
+                            title: 'Bisnis & Investasi',
+                            books: bisnis,
+                            showSeeAll: true,
+                            isMobile: isMobile,
+                            isTablet: isTablet,
+                          ),
+
+                          const SizedBox(height: 25),
+
+                          _BookSection(
+                            title: 'Sastra & Fiksi',
+                            books: sastra,
+                            showSeeAll: true,
+                            isMobile: isMobile,
+                            isTablet: isTablet,
+                          ),
+
+                          const SizedBox(height: 25),
+
+                          _BookSection(
+                            title: 'Lainnya seperti Injustice 2',
+                            books: sepertiInjustice,
+                            showSeeAll: true,
+                            isMobile: isMobile,
+                            isTablet: isTablet,
+                          ),
+
+                          const SizedBox(height: 20),
+                        ],
                       ),
                     ),
                   ),
-
-                  const SizedBox(height: 18),
-
-                  // =========================
-                  // KATEGORI
-                  // =========================
-
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14),
-                    child: Text(
-                      'Kategori',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 8),
-
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 13),
-
-                        for (int i = 0; i < kategori.length; i++)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: _CategoryItem(
-                              nama: kategori[i]['nama']!,
-                              gambar: kategori[i]['gambar']!,
-                            ),
-                          ),
-
-                        const SizedBox(width: 5),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 15),
-
-                  // =========================
-                  // RENTAL & KOLEKSI
-                  // =========================
-
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        const SizedBox(width: 13),
-
-                        _RentalCard(),
-
-                        const SizedBox(width: 12),
-
-                        _CollectionCard(),
-
-                        const SizedBox(width: 13),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: 25),
-
-                  // =========================
-                  // BUKU POPULER
-                  // =========================
-
-                  _BookSection(
-                    title: '🔥 Buku Populer',
-                    books: bukuPopuler,
-                  ),
-
-                  const SizedBox(height: 25),
-
-                  // =========================
-                  // REKOMENDASI
-                  // =========================
-
-                  _BookSection(
-                    title: 'Rekomendasi Untuk Kamu',
-                    books: rekomendasi,
-                  ),
-
-                  const SizedBox(height: 25),
-
-                  // =========================
-                  // BISNIS
-                  // =========================
-
-                  _BookSection(
-                    title: 'Bisnis & Investasi',
-                    books: bisnis,
-                  ),
-
-                  const SizedBox(height: 25),
-
-                  // =========================
-                  // SASTRA
-                  // =========================
-
-                  _BookSection(
-                    title: 'Sastra & Fiksi',
-                    books: sastra,
-                  ),
-
-                  const SizedBox(height: 25),
-
-                  // =========================
-                  // SEPERTI INJUSTICE
-                  // =========================
-
-                  _BookSection(
-                    title: 'Lainnya seperti Injustice 2',
-                    books: sepertiInjustice,
-                  ),
-
-                  const SizedBox(height: 20),
-                ],
+                ),
               ),
             ),
+
+            _buildBottomNavigation(isMobile),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // =====================================================
+  // HEADER
+  // =====================================================
+
+  Widget _buildHeader(bool isMobile) {
+    return Row(
+      children: [
+        Image.asset(
+          'images/assets/logo.png',
+          width: isMobile ? 44 : 48,
+          height: isMobile ? 44 : 48,
+        ),
+
+        const SizedBox(width: 10),
+
+        const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Libra',
+              style: TextStyle(
+                fontSize: 29,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff0d004e),
+                height: 0.9,
+              ),
+            ),
+            Text(
+              'mobile',
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff005eff),
+                letterSpacing: 3,
+              ),
+            ),
+          ],
+        ),
+
+        const Spacer(),
+
+        GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text(
+                    'Notifikasi',
+                    textAlign: TextAlign.center,
+                  ),
+                  content: const Text(
+                    'Belum ada notifikasi baru.',
+                    textAlign: TextAlign.center,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'OK',
+                        style: TextStyle(
+                          color: Color(0xff005dff),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: Image.asset(
+            'images/assets/Lonceng.png',
+            width: isMobile ? 35 : 40,
+            height: isMobile ? 35 : 40,
           ),
+        ),
+      ],
+    );
+  }
 
-          // =========================
-          // BOTTOM NAVIGATION
-          // =========================
+  // =====================================================
+  // GREETING
+  // =====================================================
 
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              height: 82,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 5,
-                    offset: Offset(0, -2),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _BottomMenu(
-                    icon: 'images/assets/home_btn_blue.png',
-                    label: 'Beranda',
-                    selected: selectedMenu == 0,
-                    onTap: () {
-                      setState(() {
-                        selectedMenu = 0;
-                      });
-                    },
-                  ),
+  Widget _buildGreeting() {
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Hi, Pir!',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
 
-                  _BottomMenu(
-                    icon: 'images/assets/search_btn.png',
-                    label: 'Eksplorasi',
-                    selected: selectedMenu == 1,
-                    onTap: () {
-                      setState(() {
-                        selectedMenu = 1;
-                      });
-                    },
-                  ),
+        SizedBox(height: 3),
 
-                  _BottomMenu(
-                    icon: 'images/assets/books_collection.png',
-                    label: 'Koleksi',
-                    selected: selectedMenu == 2,
-                    onTap: () {
-                      setState(() {
-                        selectedMenu = 2;
-                      });
-                    },
-                  ),
+        Text(
+          'Temukan buku terbaik untukmu hari ini.',
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.grey,
+          ),
+        ),
+      ],
+    );
+  }
 
-                  _BottomMenu(
-                    icon: 'images/assets/profile_btn.png',
-                    label: 'Profil',
-                    selected: selectedMenu == 3,
-                    onTap: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const ProfilePage(),),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
+  // =====================================================
+  // CONTINUE READING
+  // =====================================================
+
+  Widget _buildContinueCard(bool isMobile) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        gradient: const LinearGradient(
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+          colors: [
+            Color(0xfff3f3f3),
+            Color(0xff5191ff),
+          ],
+        ),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 3,
           ),
         ],
+      ),
+      padding: EdgeInsets.all(
+        isMobile ? 12 : 15,
+      ),
+      child: Column(
+        crossAxisAlignment:
+        CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.menu_book,
+                color: Color(0xff2144a4),
+                size: 21,
+              ),
+
+              const SizedBox(width: 7),
+
+              const Expanded(
+                child: Text(
+                  'Lanjutkan Membaca',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff2144a4),
+                  ),
+                ),
+              ),
+
+              TextButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Menampilkan semua buku yang sedang dibaca',
+                      ),
+                    ),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                ),
+                child: const Text(
+                  'Lihat Semua →',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff2144a4),
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 9),
+
+          Row(
+            crossAxisAlignment:
+            CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius:
+                BorderRadius.circular(6),
+                child: Image.asset(
+                  'images/assets/injustice2.jpg',
+                  width: isMobile ? 74 : 89,
+                  height: isMobile ? 108 : 129,
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              SizedBox(
+                width: isMobile ? 12 : 15,
+              ),
+
+              Expanded(
+                child: Column(
+                  crossAxisAlignment:
+                  CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Injustice 2',
+                      maxLines: 1,
+                      overflow:
+                      TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight:
+                        FontWeight.bold,
+                      ),
+                    ),
+
+                    const Text(
+                      'Tom Taylor',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.black54,
+                      ),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    const Text(
+                      '68% Selesai',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight:
+                        FontWeight.bold,
+                        color: Color(0xff005dff),
+                      ),
+                    ),
+
+                    const SizedBox(height: 7),
+
+                    Container(
+                      width: double.infinity,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius:
+                        BorderRadius.circular(10),
+                      ),
+                      child:
+                      FractionallySizedBox(
+                        alignment:
+                        Alignment.centerLeft,
+                        widthFactor: 0.68,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(
+                              0xff005dff,
+                            ),
+                            borderRadius:
+                            BorderRadius.circular(
+                              10,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    SizedBox(
+                      width: isMobile ? 115 : 130,
+                      height: 32,
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Membuka buku Injustice 2',
+                              ),
+                            ),
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.play_arrow,
+                          size: 16,
+                        ),
+                        label: const Text(
+                          'Lanjutkan',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight:
+                            FontWeight.bold,
+                          ),
+                        ),
+                        style:
+                        ElevatedButton.styleFrom(
+                          backgroundColor:
+                          const Color(
+                            0xff005dff,
+                          ),
+                          foregroundColor:
+                          Colors.white,
+                          padding: EdgeInsets.zero,
+                          shape:
+                          RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(
+                              7,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // =====================================================
+  // CATEGORY
+  // =====================================================
+
+  Widget _buildCategorySection(
+      bool isMobile,
+      bool isTablet,
+      ) {
+    final screenWidth =
+        MediaQuery.of(context).size.width;
+
+    double categoryWidth;
+
+    if (isMobile) {
+      categoryWidth =
+          (screenWidth - 24 - 40) / 5;
+
+      if (categoryWidth < 70) {
+        categoryWidth = 70;
+      }
+
+      if (categoryWidth > 82) {
+        categoryWidth = 82;
+      }
+    } else if (isTablet) {
+      categoryWidth =
+          (screenWidth - 32 - 40) / 5;
+
+      if (categoryWidth < 90) {
+        categoryWidth = 90;
+      }
+
+      if (categoryWidth > 110) {
+        categoryWidth = 110;
+      }
+    } else {
+      categoryWidth =
+          (screenWidth - 32 - 40) / 5;
+
+      if (categoryWidth < 110) {
+        categoryWidth = 110;
+      }
+
+      if (categoryWidth > 150) {
+        categoryWidth = 150;
+      }
+    }
+
+    return Column(
+      crossAxisAlignment:
+      CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Kategori',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
+        const SizedBox(height: 9),
+
+        Row(
+          children: [
+            for (int i = 0;
+            i < kategori.length;
+            i++)
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    right: i == kategori.length - 1
+                        ? 0
+                        : 10,
+                  ),
+                  child: _CategoryItem(
+                    nama: kategori[i]['nama']!,
+                    gambar:
+                    kategori[i]['gambar']!,
+                    width: categoryWidth,
+                    selected:
+                    selectedCategory ==
+                        kategori[i]['nama'],
+                    onTap: () {
+                      setState(() {
+                        selectedCategory =
+                        kategori[i]['nama'];
+                      });
+                    },
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  // =====================================================
+  // RENTAL + COLLECTION
+  // =====================================================
+
+  Widget _buildRentalAndCollection(
+      bool isMobile,
+      ) {
+    if (isMobile) {
+      return const Column(
+        children: [
+          _RentalCard(),
+          SizedBox(height: 12),
+          _CollectionCard(),
+        ],
+      );
+    }
+
+    return const Row(
+      crossAxisAlignment:
+      CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: _RentalCard(),
+        ),
+
+        SizedBox(width: 12),
+
+        Expanded(
+          child: _CollectionCard(),
+        ),
+      ],
+    );
+  }
+
+  // =====================================================
+  // BOTTOM NAVIGATION
+  // =====================================================
+
+  Widget _buildBottomNavigation(
+      bool isMobile,
+      ) {
+    return Container(
+      width: double.infinity,
+      height: isMobile ? 68 : 76,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 5,
+            offset: Offset(0, -2),
+          ),
+        ],
+      ),
+      child: SafeArea(
+        top: false,
+        child: Row(
+          mainAxisAlignment:
+          MainAxisAlignment.spaceAround,
+          children: [
+            _BottomMenu(
+              icon: selectedMenu == 0
+                  ? 'images/assets/home_btn_blue.png'
+                  : 'images/assets/home_btn.png',
+              label: 'Beranda',
+              selected: selectedMenu == 0,
+              onTap: () {
+                setState(() {
+                  selectedMenu = 0;
+                });
+              },
+            ),
+
+            _BottomMenu(
+              icon: selectedMenu == 1
+                  ? 'images/assets/search_btn_blue.png'
+                  : 'images/assets/search_btn.png',
+              label: 'Eksplorasi',
+              selected: selectedMenu == 1,
+              onTap: () {
+                setState(() {
+                  selectedMenu = 1;
+                });
+              },
+            ),
+
+            _BottomMenu(
+              icon: selectedMenu == 2
+                  ? 'images/assets/books_collection_blue.png'
+                  : 'images/assets/books_collection.png',
+              label: 'Koleksi',
+              selected: selectedMenu == 2,
+              onTap: () {
+                setState(() {
+                  selectedMenu = 2;
+                });
+              },
+            ),
+
+            _BottomMenu(
+              icon: selectedMenu == 3
+                  ? 'images/assets/profile_btn_blue.png'
+                  : 'images/assets/profile_btn.png',
+              label: 'Profil',
+              selected: selectedMenu == 3,
+              onTap: () {
+                setState(() {
+                  selectedMenu = 3;
+                });
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                    const ProfilePage(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -604,44 +842,59 @@ class _HomePageState extends State<HomePage> {
 class _CategoryItem extends StatelessWidget {
   final String nama;
   final String gambar;
+  final double width;
+  final bool selected;
+  final VoidCallback onTap;
 
   const _CategoryItem({
     required this.nama,
     required this.gambar,
+    required this.width,
+    required this.selected,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Kategori $nama dipilih'),
-          ),
-        );
-      },
+      onTap: onTap,
       child: Container(
-        width: 69,
-        height: 69,
+        width: width,
+        height: 82,
         decoration: BoxDecoration(
-          color: const Color(0xfff5f8ff),
-          borderRadius: BorderRadius.circular(8),
+          color: selected
+              ? const Color(0xffdceaff)
+              : const Color(0xfff5f8ff),
+          borderRadius:
+          BorderRadius.circular(9),
+          border: Border.all(
+            color: selected
+                ? const Color(0xff005dff)
+                : Colors.transparent,
+          ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment:
+          MainAxisAlignment.center,
           children: [
             Image.asset(
               gambar,
-              width: 39,
-              height: 39,
+              width: 38,
+              height: 38,
               fit: BoxFit.contain,
             ),
-            const SizedBox(height: 1),
+
+            const SizedBox(height: 4),
+
             Text(
               nama,
+              maxLines: 1,
+              overflow:
+              TextOverflow.ellipsis,
               style: const TextStyle(
                 fontSize: 11,
-                fontWeight: FontWeight.bold,
+                fontWeight:
+                FontWeight.bold,
               ),
             ),
           ],
@@ -656,48 +909,66 @@ class _CategoryItem extends StatelessWidget {
 // RENTAL CARD
 // =====================================================
 
-class _RentalCard extends StatelessWidget {
+class _RentalCard
+    extends StatelessWidget {
   const _RentalCard();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320,
-      height: 179,
-      padding: const EdgeInsets.all(10),
+      width: double.infinity,
+      height: 180,
+      padding:
+      const EdgeInsets.all(11),
       decoration: BoxDecoration(
-        color: const Color(0xffeffff6),
-        borderRadius: BorderRadius.circular(6),
+        color:
+        const Color(0xffeffff6),
+        borderRadius:
+        BorderRadius.circular(8),
         boxShadow: const [
           BoxShadow(
-            color: Colors.black26,
+            color: Colors.black12,
             blurRadius: 4,
           ),
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+        CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const Text(
-                'Rental Aktif',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff2c594b),
+              const Expanded(
+                child: Text(
+                  'Rental Aktif',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight:
+                    FontWeight.bold,
+                    color:
+                    Color(0xff2c594b),
+                  ),
                 ),
               ),
 
-              const Spacer(),
-
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Menampilkan semua rental aktif',
+                      ),
+                    ),
+                  );
+                },
                 child: const Text(
                   'Lihat Semua →',
                   style: TextStyle(
                     fontSize: 12,
-                    color: Color(0xff2c594b),
+                    color:
+                    Color(0xff2c594b),
                   ),
                 ),
               ),
@@ -710,33 +981,42 @@ class _RentalCard extends StatelessWidget {
             child: Row(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius:
+                  BorderRadius.circular(6),
                   child: Image.asset(
                     'images/assets/letthemtheory.jpg',
-                    width: 89,
-                    height: 129,
+                    width: 78,
+                    height: 115,
                     fit: BoxFit.cover,
                   ),
                 ),
 
-                const SizedBox(width: 17),
+                const SizedBox(width: 12),
 
                 Expanded(
                   child: Container(
-                    height: 129,
-                    padding: const EdgeInsets.all(9),
+                    height: 115,
+                    padding:
+                    const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: const Color(0xfff5fef0),
-                      borderRadius: BorderRadius.circular(6),
+                      color:
+                      const Color(0xfff5fef0),
+                      borderRadius:
+                      BorderRadius.circular(6),
                     ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment:
+                      CrossAxisAlignment.start,
                       children: [
                         const Text(
                           'The Let Them Theory',
+                          maxLines: 1,
+                          overflow:
+                          TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                            fontWeight:
+                            FontWeight.bold,
                           ),
                         ),
 
@@ -744,42 +1024,68 @@ class _RentalCard extends StatelessWidget {
                           'Mel Robbins',
                           style: TextStyle(
                             fontSize: 11,
-                            color: Colors.black54,
+                            color:
+                            Colors.black54,
                           ),
                         ),
 
-                        const SizedBox(height: 9),
+                        const SizedBox(height: 5),
 
                         const Text(
                           '⏱  5 Hari',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            fontWeight:
+                            FontWeight.bold,
                           ),
                         ),
 
                         const Spacer(),
 
                         SizedBox(
-                          width: double.infinity,
-                          height: 32,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
+                          width:
+                          double.infinity,
+                          height: 29,
+                          child:
+                          ElevatedButton(
+                            onPressed: () {
+                              ScaffoldMessenger
+                                  .of(
+                                context,
+                              ).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Membuka The Let Them Theory',
+                                  ),
+                                ),
+                              );
+                            },
+                            style:
+                            ElevatedButton
+                                .styleFrom(
                               backgroundColor:
-                              const Color(0xff5e9d82),
-                              foregroundColor: Colors.white,
-                              padding: EdgeInsets.zero,
-                              shape: RoundedRectangleBorder(
+                              const Color(
+                                0xff5e9d82,
+                              ),
+                              foregroundColor:
+                              Colors.white,
+                              padding:
+                              EdgeInsets.zero,
+                              shape:
+                              RoundedRectangleBorder(
                                 borderRadius:
-                                BorderRadius.circular(7),
+                                BorderRadius
+                                    .circular(
+                                  7,
+                                ),
                               ),
                             ),
                             child: const Text(
                               'Baca Sekarang',
                               style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                fontWeight:
+                                FontWeight.bold,
                               ),
                             ),
                           ),
@@ -802,83 +1108,235 @@ class _RentalCard extends StatelessWidget {
 // COLLECTION CARD
 // =====================================================
 
-class _CollectionCard extends StatelessWidget {
+class _CollectionCard
+    extends StatelessWidget {
   const _CollectionCard();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320,
-      height: 179,
-      padding: const EdgeInsets.all(15),
+      width: double.infinity,
+      height: 180,
+      padding:
+      const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: const Color(0xfff3e8ff),
-        borderRadius: BorderRadius.circular(6),
+        color:
+        const Color(0xfff1e4ff),
+        borderRadius:
+        BorderRadius.circular(8),
         boxShadow: const [
           BoxShadow(
-            color: Colors.black26,
+            color: Colors.black12,
             blurRadius: 4,
           ),
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+        CrossAxisAlignment.start,
         children: [
           const Text(
             'Koleksi Saya',
             style: TextStyle(
               fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color(0xff4f3886),
+              fontWeight:
+              FontWeight.bold,
+              color:
+              Color(0xff4f3886),
             ),
           ),
 
           const SizedBox(height: 10),
 
-          Row(
-            children: [
-              Image.asset(
-                'images/assets/books_collection.png',
-                width: 39,
-                height: 39,
-              ),
-
-              const SizedBox(width: 15),
-
-              const Text(
-                'Buku Dimiliki',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff4f3886),
+          Expanded(
+            child: Column(
+              children: [
+                _CollectionButton(
+                  icon:
+                  'images/assets/books_collection.png',
+                  label: 'Buku Dimiliki',
                 ),
-              ),
-            ],
-          ),
 
-          const SizedBox(height: 12),
+                const SizedBox(height: 8),
 
-          Row(
-            children: [
-              Image.asset(
-                'images/assets/callender_collection.png',
-                width: 42,
-                height: 42,
-              ),
-
-              const SizedBox(width: 12),
-
-              const Text(
-                'Rental Aktif',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff4f3886),
+                _CollectionButton(
+                  icon:
+                  'images/assets/callender_collection.png',
+                  label: 'Rental Aktif',
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+
+// =====================================================
+// COLLECTION BUTTON
+// =====================================================
+
+class _CollectionButton
+    extends StatefulWidget {
+  final String icon;
+  final String label;
+
+  const _CollectionButton({
+    required this.icon,
+    required this.label,
+  });
+
+  @override
+  State<_CollectionButton> createState() =>
+      _CollectionButtonState();
+}
+
+class _CollectionButtonState
+    extends State<_CollectionButton> {
+  bool isHovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: MouseRegion(
+        cursor:
+        SystemMouseCursors.click,
+        onEnter: (_) {
+          setState(() {
+            isHovering = true;
+          });
+        },
+        onExit: (_) {
+          setState(() {
+            isHovering = false;
+          });
+        },
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text(
+                    widget.label,
+                    textAlign:
+                    TextAlign.center,
+                  ),
+                  content: Text(
+                    widget.label ==
+                        'Buku Dimiliki'
+                        ? 'Menampilkan buku yang kamu miliki.'
+                        : 'Menampilkan buku yang sedang kamu rental.',
+                    textAlign:
+                    TextAlign.center,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(
+                          context,
+                        );
+                      },
+                      child: const Text(
+                        'OK',
+                        style: TextStyle(
+                          color:
+                          Color(0xff4f3886),
+                          fontWeight:
+                          FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: AnimatedContainer(
+            duration:
+            const Duration(
+              milliseconds: 150,
+            ),
+            width: double.infinity,
+            padding:
+            const EdgeInsets.symmetric(
+              horizontal: 10,
+            ),
+            decoration: BoxDecoration(
+              color: isHovering
+                  ? const Color(
+                0xffeee3ff,
+              )
+                  : Colors.white,
+              borderRadius:
+              BorderRadius.circular(7),
+              border: Border.all(
+                color: isHovering
+                    ? const Color(
+                  0xffa98bd6,
+                )
+                    : const Color(
+                  0xffdfd0f2,
+                ),
+              ),
+              boxShadow: isHovering
+                  ? const [
+                BoxShadow(
+                  color:
+                  Colors.black12,
+                  blurRadius: 4,
+                  offset:
+                  Offset(0, 2),
+                ),
+              ]
+                  : [],
+            ),
+            child: Row(
+              children: [
+                Image.asset(
+                  widget.icon,
+                  width: 32,
+                  height: 32,
+                ),
+
+                const SizedBox(
+                  width: 10,
+                ),
+
+                Expanded(
+                  child: Text(
+                    widget.label,
+                    maxLines: 1,
+                    overflow:
+                    TextOverflow.ellipsis,
+                    style:
+                    const TextStyle(
+                      fontSize: 14,
+                      fontWeight:
+                      FontWeight.bold,
+                      color:
+                      Color(0xff4f3886),
+                    ),
+                  ),
+                ),
+
+                Icon(
+                  Icons.chevron_right,
+                  color: isHovering
+                      ? const Color(
+                    0xff5b3b91,
+                  )
+                      : const Color(
+                    0xff4f3886,
+                  ),
+                  size: 24,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -889,70 +1347,151 @@ class _CollectionCard extends StatelessWidget {
 // BOOK SECTION
 // =====================================================
 
-class _BookSection extends StatelessWidget {
+class _BookSection
+    extends StatelessWidget {
   final String title;
   final List<Map<String, String>> books;
+  final bool showSeeAll;
+  final bool isMobile;
+  final bool isTablet;
 
   const _BookSection({
     required this.title,
     required this.books,
+    required this.showSeeAll,
+    required this.isMobile,
+    required this.isTablet,
   });
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth =
+        MediaQuery.of(context).size.width;
+
+    final availableWidth =
+    screenWidth > 1100
+        ? 1100 - 32
+        : screenWidth -
+        (isMobile ? 24 : 32);
+
+    double gap;
+    double cardWidth;
+
+    if (isMobile) {
+      gap = 8;
+
+      cardWidth =
+          (availableWidth - (gap * 3)) / 4;
+
+      if (cardWidth < 75) {
+        cardWidth = 75;
+      }
+    } else if (isTablet) {
+      gap = 12;
+
+      cardWidth =
+          (availableWidth - (gap * 3)) / 4;
+
+      if (cardWidth > 135) {
+        cardWidth = 135;
+      }
+    } else {
+      gap = 24;
+
+      cardWidth =
+          (availableWidth - (gap * 3)) / 4;
+
+      if (cardWidth > 175) {
+        cardWidth = 175;
+      }
+    }
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+      CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                title,
+                maxLines: 1,
+                overflow:
+                TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight:
+                  FontWeight.bold,
                 ),
               ),
+            ),
 
+            if (showSeeAll)
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Menampilkan semua buku di bagian $title',
+                      ),
+                    ),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                ),
                 child: const Text(
                   'Lihat Semua →',
                   style: TextStyle(
                     fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff68a0df),
+                    fontWeight:
+                    FontWeight.bold,
+                    color:
+                    Color(0xff68a0df),
                   ),
                 ),
               ),
-            ],
-          ),
+          ],
         ),
 
-        const SizedBox(height: 2),
+        const SizedBox(height: 7),
 
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              const SizedBox(width: 13),
-
-              for (int i = 0; i < books.length; i++)
-                Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: _BookCard(
-                    judul: books[i]['judul']!,
-                    penulis: books[i]['penulis']!,
-                    gambar: books[i]['gambar']!,
+        Row(
+          crossAxisAlignment:
+          CrossAxisAlignment.start,
+          children: [
+            for (int i = 0;
+            i < books.length;
+            i++)
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    right:
+                    i == books.length - 1
+                        ? 0
+                        : gap / 2,
+                    left:
+                    i == 0
+                        ? 0
+                        : gap / 2,
+                  ),
+                  child: Center(
+                    child: _BookCard(
+                      judul:
+                      books[i]['judul']!,
+                      penulis:
+                      books[i]['penulis']!,
+                      gambar:
+                      books[i]['gambar']!,
+                      width: cardWidth,
+                      isMobile: isMobile,
+                    ),
                   ),
                 ),
-
-              const SizedBox(width: 4),
-            ],
-          ),
+              ),
+          ],
         ),
       ],
     );
@@ -964,73 +1503,98 @@ class _BookSection extends StatelessWidget {
 // BOOK CARD
 // =====================================================
 
-class _BookCard extends StatelessWidget {
+class _BookCard
+    extends StatelessWidget {
   final String judul;
   final String penulis;
   final String gambar;
+  final double width;
+  final bool isMobile;
 
   const _BookCard({
     required this.judul,
     required this.penulis,
     required this.gambar,
+    required this.width,
+    required this.isMobile,
   });
 
   @override
   Widget build(BuildContext context) {
+    final double imageHeight =
+        width * 1.43;
+
     return GestureDetector(
       onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(
           SnackBar(
-            content: Text('$judul dipilih'),
+            content: Text(
+              '$judul dipilih',
+            ),
           ),
         );
       },
       child: SizedBox(
-        width: 89,
-        height: 164,
+        width: width,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment:
+          CrossAxisAlignment.start,
           children: [
             Container(
-              width: 89,
-              height: 129,
+              width: width,
+              height: imageHeight,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius:
+                BorderRadius.circular(7),
                 boxShadow: const [
                   BoxShadow(
-                    color: Colors.black54,
+                    color: Colors.black26,
                     blurRadius: 4,
+                    offset: Offset(0, 2),
                   ),
                 ],
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius:
+                BorderRadius.circular(7),
                 child: Image.asset(
                   gambar,
+                  width: width,
+                  height: imageHeight,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
 
-            const SizedBox(height: 4),
+            const SizedBox(height: 5),
 
             Text(
               judul,
               maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+              overflow:
+              TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize:
+                isMobile ? 9 : 12,
+                fontWeight:
+                FontWeight.bold,
               ),
             ),
+
+            const SizedBox(height: 1),
 
             Text(
               penulis,
               maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 10,
-                color: Colors.black54,
+              overflow:
+              TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize:
+                isMobile ? 8 : 10,
+                color:
+                Colors.black54,
               ),
             ),
           ],
@@ -1045,7 +1609,8 @@ class _BookCard extends StatelessWidget {
 // BOTTOM MENU
 // =====================================================
 
-class _BottomMenu extends StatelessWidget {
+class _BottomMenu
+    extends StatelessWidget {
   final String icon;
   final String label;
   final bool selected;
@@ -1062,28 +1627,36 @@ class _BottomMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            icon,
-            width: 32,
-            height: 32,
-          ),
-
-          const SizedBox(height: 2),
-
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight:
-              selected ? FontWeight.bold : FontWeight.normal,
-              color:
-              selected ? const Color(0xff005dff) : Colors.grey,
+      child: SizedBox(
+        width: 85,
+        child: Column(
+          mainAxisAlignment:
+          MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              icon,
+              width: 27,
+              height: 27,
             ),
-          ),
-        ],
+
+            const SizedBox(height: 2),
+
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: selected
+                    ? FontWeight.bold
+                    : FontWeight.normal,
+                color: selected
+                    ? const Color(
+                  0xff005dff,
+                )
+                    : Colors.grey,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
