@@ -1,17 +1,48 @@
 import 'package:flutter/material.dart';
 
 class InformasiAkunPage extends StatefulWidget {
-  const InformasiAkunPage({super.key});
+  final String namaAwal;
+  final String emailAwal;
+  final String nomorHandphoneAwal;
+
+  const InformasiAkunPage({
+    super.key,
+    required this.namaAwal,
+    required this.emailAwal,
+    required this.nomorHandphoneAwal,
+  });
 
   @override
   State<InformasiAkunPage> createState() => _InformasiAkunPageState();
 }
 
 class _InformasiAkunPageState extends State<InformasiAkunPage> {
-  String nama = 'Ben';
-  String email = 'ben12@gmail.com';
-  String nomorHandphone = '';
+  late String nama;
+  late String email;
+  late String nomorHandphone;
 
+  @override
+  void initState() {
+    super.initState();
+
+    nama = widget.namaAwal;
+    email = widget.emailAwal;
+    nomorHandphone = widget.nomorHandphoneAwal;
+  }
+
+  //Ini bagian Mengembalikan Data
+  void simpanData() {
+    Navigator.pop(
+      context,
+      {
+        'nama': nama,
+        'email': email,
+        'nomorHandphone': nomorHandphone,
+      },
+    );
+  }
+
+  //Ini bagian Edit Nama
   void editNama() {
     TextEditingController controller =
     TextEditingController(text: nama);
@@ -52,6 +83,7 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
     );
   }
 
+  //Ini bagian Edit Email
   void editEmail() {
     TextEditingController controller =
     TextEditingController(text: email);
@@ -82,7 +114,6 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
                     email = controller.text;
                   });
                 }
-
                 Navigator.pop(context);
               },
               child: const Text('Simpan'),
@@ -93,10 +124,10 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
     );
   }
 
+  //Ini bagian Edit Nomor Handphone
   void editNomorHandphone() {
     TextEditingController controller =
     TextEditingController(text: nomorHandphone);
-
     showDialog(
       context: context,
       builder: (context) {
@@ -137,11 +168,14 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         foregroundColor: Colors.black87,
+        leading: IconButton(
+          onPressed: simpanData,
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text(
           'Informasi Akun',
           style: TextStyle(
@@ -157,8 +191,7 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-
-            // FOTO PROFIL
+            //Ini bagian Foto Profil
             CircleAvatar(
               radius: 32,
               backgroundColor: Colors.grey.shade300,
@@ -170,8 +203,7 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
             ),
 
             const SizedBox(height: 8),
-
-            // NAMA
+            //Ini bagian Nama Profil
             Text(
               nama,
               style: const TextStyle(
@@ -181,7 +213,7 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
             ),
 
             const SizedBox(height: 25),
-
+            //Ini bagian Judul Edit Profil
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -194,22 +226,21 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
             ),
 
             const SizedBox(height: 12),
-
-            // EMAIL
+            //Ini bagian Email
             _AccountItem(
               title: 'Email',
               value: email,
               onTap: editEmail,
             ),
 
-            // NAMA
+            //Ini bagian Nama Lengkap
             _AccountItem(
               title: 'Nama Lengkap',
               value: nama,
               onTap: editNama,
             ),
 
-            // NOMOR HP
+            //Ini bagian Nomor Handphone
             _AccountItem(
               title: 'Tambahkan Nomor Handphone',
               value: nomorHandphone,
@@ -223,6 +254,7 @@ class _InformasiAkunPageState extends State<InformasiAkunPage> {
   }
 }
 
+//Ini bagian Item Informasi Akun
 class _AccountItem extends StatelessWidget {
   final String title;
   final String value;
@@ -283,22 +315,18 @@ class _AccountItem extends StatelessWidget {
                       fontSize: 13,
                     ),
                   ),
-
                   Text(
                     value.isEmpty
                         ? 'Belum ditambahkan'
                         : value,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 11,
-                      color: value.isEmpty
-                          ? Colors.grey
-                          : Colors.grey,
+                      color: Colors.grey,
                     ),
                   ),
                 ],
               ),
             ),
-
             const Icon(
               Icons.edit_outlined,
               color: Colors.grey,

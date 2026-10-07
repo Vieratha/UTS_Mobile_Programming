@@ -7,6 +7,8 @@ class PusatBantuanPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
+      //Ini bagian AppBar
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -20,6 +22,8 @@ class PusatBantuanPage extends StatelessWidget {
           ),
         ),
       ),
+
+      //Ini bagian Isi FAQ
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
@@ -27,6 +31,7 @@ class PusatBantuanPage extends StatelessWidget {
           children: const [
             SizedBox(height: 10),
 
+            //Ini bagian Judul FAQ
             Text(
               'FAQ',
               style: TextStyle(

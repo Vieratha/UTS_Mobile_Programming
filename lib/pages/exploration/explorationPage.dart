@@ -401,9 +401,8 @@ class _ExplorationPageState extends State<ExplorationPage> {
             ),
 
           //Ini bagian daftar hasil pencarian
-          //Ini bagian daftar hasil pencarian
           if (hasil.isNotEmpty)
-            ListView(
+            Column(
               children: [
                 for (int i = 0; i < hasil.length; i++)
                   bukuListTile(hasil[i]),

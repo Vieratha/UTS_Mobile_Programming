@@ -17,11 +17,115 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   int selectedMenu = 3;
 
-  void goToHome() {
-    Navigator.pushReplacement(
+  String nama = 'Pir';
+  String email = 'vietha@gmail.com';
+  String nomorHandphone = '';
+
+  //Ini bagian Membuka Informasi Akun
+  void bukaInformasiAkun() {
+    Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const HomePage(),
+        builder: (context) => InformasiAkunPage(
+          namaAwal: nama,
+          emailAwal: email,
+          nomorHandphoneAwal: nomorHandphone,
+        ),
+      ),
+    ).then((hasil) {
+      if (hasil != null) {
+        setState(() {
+          nama = hasil['nama'];
+          email = hasil['email'];
+          nomorHandphone = hasil['nomorHandphone'];
+        });
+      }
+    });
+  }
+
+  //Ini bagian Navbar bawah
+  Widget _buildBottomNavigation() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final bool isMobile = screenWidth < 600;
+
+    return Container(
+      width: double.infinity,
+      height: isMobile ? 68 : 76,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 5,
+            offset: Offset(0, -2),
+          ),
+        ],
+      ),
+      child: SafeArea(
+        top: false,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            //Ini bagian Beranda
+            _BottomMenu(
+              icon: selectedMenu == 0
+                  ? 'images/assets/home_btn_blue.png'
+                  : 'images/assets/home_btn.png',
+              label: 'Beranda',
+              selected: selectedMenu == 0,
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                );
+              },
+            ),
+
+            //Ini bagian Eksplorasi
+            _BottomMenu(
+              icon: selectedMenu == 1
+                  ? 'images/assets/search_btn_blue.png'
+                  : 'images/assets/search_btn.png',
+              label: 'Eksplorasi',
+              selected: selectedMenu == 1,
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExplorationPage(),
+                  ),
+                );
+              },
+            ),
+
+            //Ini bagian Koleksi
+            _BottomMenu(
+              icon: selectedMenu == 2
+                  ? 'images/assets/book_btn_blue.png'
+                  : 'images/assets/book_btn.png',
+              label: 'Koleksi',
+              selected: selectedMenu == 2,
+              onTap: () {
+              },
+            ),
+
+            //Ini bagian Profil
+            _BottomMenu(
+              icon: selectedMenu == 3
+                  ? 'images/assets/profile_btn_blue.png'
+                  : 'images/assets/profile_btn.png',
+              label: 'Profil',
+              selected: selectedMenu == 3,
+              onTap: () {
+                setState(() {
+                  selectedMenu = 3;
+                });
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -30,6 +134,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
+      //Ini bagian Isi Halaman
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(bottom: 100),
@@ -40,7 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 const SizedBox(height: 25),
 
-                // JUDUL
+                //Ini bagian Judul Profil
                 const Text(
                   'Profil Saya',
                   style: TextStyle(
@@ -52,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                 const SizedBox(height: 18),
 
-                // PROFILE CARD
+                //Ini bagian Profile Card
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(12),
@@ -73,7 +179,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Row(
                         children: [
+                          //Ini bagian Foto Profil
                           Stack(
+                            clipBehavior: Clip.none,
                             children: [
                               Container(
                                 width: 55,
@@ -97,24 +205,44 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                               ),
+
+                              //Ini bagian Tombol Kamera
+                              Positioned(
+                                right: -3,
+                                bottom: -3,
+                                child: Container(
+                                  width: 22,
+                                  height: 22,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xff4d7cff),
+                                  ),
+                                  child: const Icon(
+                                    Icons.camera_alt,
+                                    size: 13,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
 
                           const SizedBox(width: 12),
 
-                          const Column(
+                          //Ini bagian Informasi Profil
+                          Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Ben',
-                                style: TextStyle(
+                                nama,
+                                style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
-                                'ben12@gmail.com',
-                                style: TextStyle(
+                                email,
+                                style: const TextStyle(
                                   fontSize: 11,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -126,6 +254,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                       const SizedBox(height: 10),
 
+                      //Ini bagian Statistik Profil
                       Row(
                         children: [
                           Expanded(
@@ -195,6 +324,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                 const SizedBox(height: 24),
 
+                //Ini bagian Akun dan Aktivitas
                 const Text(
                   'Akun & Aktivitas',
                   style: TextStyle(
@@ -205,7 +335,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                 const SizedBox(height: 5),
 
-                // MENU AKUN
+                //Ini bagian Menu Akun
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -215,21 +345,15 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   child: Column(
                     children: [
+                      //Ini bagian Informasi Akun
                       _ProfileMenu(
                         icon: Icons.person_outline,
                         title: 'Informasi Akun',
                         subtitle: 'Edit profil, email, menambah nomor',
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                              const InformasiAkunPage(),
-                            ),
-                          );
-                        },
+                        onTap: bukaInformasiAkun,
                       ),
 
+                      //Ini bagian Keamanan
                       _ProfileMenu(
                         icon: Icons.lock_outline,
                         title: 'Keamanan',
@@ -244,6 +368,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         },
                       ),
 
+                      //Ini bagian Riwayat Transaksi
                       _ProfileMenu(
                         icon: Icons.receipt_long_outlined,
                         title: 'Riwayat Transaksi',
@@ -259,6 +384,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         },
                       ),
 
+                      //Ini bagian Pusat Bantuan
                       _ProfileMenu(
                         icon: Icons.help_outline,
                         title: 'Pusat Bantuan',
@@ -280,14 +406,16 @@ class _ProfilePageState extends State<ProfilePage> {
 
                 const SizedBox(height: 32),
 
-                // KELUAR
+                //Ini bagian Tombol Keluar
                 SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: OutlinedButton.icon(
                     onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(context,
-                      '/login', (route) => false,
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/login',
+                            (route) => false,
                       );
                     },
                     icon: const Icon(
@@ -322,76 +450,14 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
 
-      // BOTTOM MENU
-      bottomNavigationBar: Container(
-        height: 82,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 5,
-              offset: Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _BottomMenu(
-              icon: 'images/assets/home_btn_blue.png',
-              label: 'Beranda',
-              selected: selectedMenu == 0,
-              onTap: goToHome,
-            ),
-
-            _BottomMenu(
-              icon: 'images/assets/search_btn.png',
-              label: 'Eksplorasi',
-              selected: selectedMenu == 1,
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ExplorationPage(),
-                  ),
-                );
-              },
-            ),
-
-            _BottomMenu(
-              icon: 'images/assets/books_collection.png',
-              label: 'Koleksi',
-              selected: selectedMenu == 2,
-              onTap: () {
-                setState(() {
-                  selectedMenu = 2;
-                });
-              },
-            ),
-
-            _BottomMenu(
-              icon: 'images/assets/profile_btn.png',
-              label: 'Profil',
-              selected: selectedMenu == 3,
-              onTap: () {
-                setState(() {
-                  selectedMenu = 3;
-                });
-              },
-            ),
-          ],
-        ),
-      ),
+      //Ini bagian Navbar bawah
+      bottomNavigationBar: _buildBottomNavigation(),
     );
   }
 }
 
 
-// =====================================================
-// PROFILE MENU
-// =====================================================
-
+//Ini bagian Menu Profil
 class _ProfileMenu extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -427,6 +493,7 @@ class _ProfileMenu extends StatelessWidget {
         ),
         child: Row(
           children: [
+            //Ini bagian Icon Menu
             Container(
               width: 38,
               height: 38,
@@ -436,13 +503,14 @@ class _ProfileMenu extends StatelessWidget {
               ),
               child: Icon(
                 icon,
-                color: Color(0xff4d8cff),
+                color: const Color(0xff4d8cff),
                 size: 23,
               ),
             ),
 
             const SizedBox(width: 10),
 
+            //Ini bagian Informasi Menu
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -480,10 +548,7 @@ class _ProfileMenu extends StatelessWidget {
 }
 
 
-// =====================================================
-// BOTTOM MENU
-// =====================================================
-
+//Ini bagian Item Navbar
 class _BottomMenu extends StatelessWidget {
   final String icon;
   final String label;
@@ -499,30 +564,36 @@ class _BottomMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            icon,
-            width: 32,
-            height: 32,
-          ),
-
-          const SizedBox(height: 2),
-
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight:
-              selected ? FontWeight.bold : FontWeight.normal,
-              color:
-              selected ? const Color(0xff005dff) : Colors.grey,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
+      child: SizedBox(
+        width: 85,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              icon,
+              width: 27,
+              height: 27,
             ),
-          ),
-        ],
+
+            const SizedBox(height: 2),
+
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight:
+                selected ? FontWeight.bold : FontWeight.normal,
+                color:
+                selected ? const Color(0xff005dff) : Colors.grey,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
