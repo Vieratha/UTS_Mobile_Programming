@@ -4,6 +4,7 @@ import '../exploration/explorationPage.dart';
 import '../collection/collectionPage.dart';
 import '../collection/koleksiDimilikiPage.dart';
 import '../collection/koleksiRentalPage.dart';
+import '../detail/detailRumahLebah.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -1340,16 +1341,22 @@ class _BookCard
 
     return GestureDetector(
       onTap: () {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(
-          SnackBar(
-            content: Text(
-              '$judul dipilih',
+        if (judul == 'Rumah Lebah') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const DetailRumahLebah(),
             ),
-          ),
-        );
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('$judul dipilih'),
+            ),
+          );
+        }
       },
+
       child: SizedBox(
         width: width,
         child: Column(
