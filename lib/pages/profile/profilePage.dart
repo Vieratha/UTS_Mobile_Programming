@@ -108,6 +108,12 @@ class _ProfilePageState extends State<ProfilePage> {
               label: 'Koleksi',
               selected: selectedMenu == 2,
               onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const KoleksiPage(),
+                  ),
+                );
               },
             ),
 
