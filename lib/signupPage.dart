@@ -70,15 +70,39 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               children: [
                 const SizedBox(height: 30),
-
                 Image.asset(
                   'images/assets/logo.png',
                   width: 90,
                   height: 90,
                 ),
 
-                const SizedBox(height: 15),
+                const SizedBox(height: 3),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Libra',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        height: 1.0,
+                      ),
+                    ),
+                    const Text(
+                      'mobile',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.blue,
+                        letterSpacing: 7,
+                        height: 1.0,
+                      ),
+                    ),
+                  ],
+                ),
 
+                const SizedBox(height: 15),
                 const Text(
                   'Buat Akun Baru',
                   style: TextStyle(

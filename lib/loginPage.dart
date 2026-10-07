@@ -4,7 +4,6 @@ import 'signupPage.dart';
 class LoginPage extends StatefulWidget {
   final String? registeredEmail;
   final String? registeredPassword;
-
   const LoginPage({
     super.key,
     this.registeredEmail,
@@ -18,7 +17,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
   bool passwordVisible = false;
 
   void login() {
@@ -75,15 +73,39 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 const SizedBox(height: 40),
-
                 Image.asset(
                   'images/assets/logo.png',
                   width: 100,
                   height: 100,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 3),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Libra',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        height: 1.0,
+                      ),
+                    ),
+                    const Text(
+                      'mobile',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.blue,
+                        letterSpacing: 7,
+                        height: 1.0,
+                      ),
+                    ),
+                  ],
+                ),
 
+                const SizedBox(height: 10),
                 const Text(
                   'Selamat Datang Kembali',
                   style: TextStyle(
@@ -93,7 +115,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(height: 8),
-
                 const Text(
                   'Masuk ke akun Libra Anda',
                   style: TextStyle(
@@ -103,7 +124,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(height: 35),
-
                 TextField(
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
@@ -118,7 +138,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(height: 20),
-
                 TextField(
                   controller: passwordController,
                   obscureText: !passwordVisible,
@@ -145,7 +164,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(height: 10),
-
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -160,7 +178,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(height: 15),
-
                 SizedBox(
                   width: double.infinity,
                   height: 50,
@@ -184,7 +201,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(height: 20),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -213,7 +229,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 20),
               ],
             ),
