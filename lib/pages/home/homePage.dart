@@ -1339,84 +1339,95 @@ class _BookCard
     final double imageHeight =
         width * 1.43;
 
-    return GestureDetector(
-      onTap: () {
-        if (judul == 'Rumah Lebah') {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const DetailRumahLebah(),
-            ),
-          );
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('$judul dipilih'),
-            ),
-          );
-        }
-      },
+    return MouseRegion(
+      //Ini bagian agar cursor tetap normal
+      cursor: SystemMouseCursors.click,
 
-      child: SizedBox(
-        width: width,
-        child: Column(
-          crossAxisAlignment:
-          CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: width,
-              height: imageHeight,
-              decoration: BoxDecoration(
-                borderRadius:
-                BorderRadius.circular(7),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 4,
-                    offset: Offset(0, 2),
-                  ),
-                ],
+      child: GestureDetector(
+        onTap: () {
+          if (judul == 'Rumah Lebah') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                const DetailRumahLebah(),
               ),
-              child: ClipRRect(
-                borderRadius:
-                BorderRadius.circular(7),
-                child: Image.asset(
-                  gambar,
-                  width: width,
-                  height: imageHeight,
-                  fit: BoxFit.cover,
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('$judul dipilih'),
+              ),
+            );
+          }
+        },
+
+        child: SizedBox(
+          width: width,
+          child: Column(
+            crossAxisAlignment:
+            CrossAxisAlignment.start,
+            children: [
+              //Ini bagian Cover Buku
+              Container(
+                width: width,
+                height: imageHeight,
+                decoration: BoxDecoration(
+                  borderRadius:
+                  BorderRadius.circular(7),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius:
+                  BorderRadius.circular(7),
+                  child: Image.asset(
+                    gambar,
+                    width: width,
+                    height: imageHeight,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 5),
-            Text(
-              judul,
-              maxLines: 1,
-              overflow:
-              TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize:
-                isMobile ? 9 : 12,
-                fontWeight:
-                FontWeight.bold,
-              ),
-            ),
+              const SizedBox(height: 5),
 
-            const SizedBox(height: 1),
-            Text(
-              penulis,
-              maxLines: 1,
-              overflow:
-              TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize:
-                isMobile ? 8 : 10,
-                color:
-                Colors.black54,
+              //Ini bagian Judul Buku
+              Text(
+                judul,
+                maxLines: 1,
+                overflow:
+                TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize:
+                  isMobile ? 9 : 12,
+                  fontWeight:
+                  FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 1),
+
+              //Ini bagian Nama Penulis
+              Text(
+                penulis,
+                maxLines: 1,
+                overflow:
+                TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize:
+                  isMobile ? 8 : 10,
+                  color:
+                  Colors.black54,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
