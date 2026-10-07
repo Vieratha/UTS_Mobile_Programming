@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'loginPage.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -39,13 +40,15 @@ class _SignupPageState extends State<SignupPage> {
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Registrasi berhasil'),
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginPage(
+          registeredEmail: emailController.text,
+          registeredPassword: passwordController.text,
+        ),
       ),
     );
-
-    Navigator.pop(context);
   }
 
   @override
@@ -97,7 +100,6 @@ class _SignupPageState extends State<SignupPage> {
 
                 const SizedBox(height: 30),
 
-                // Nama Lengkap
                 TextField(
                   controller: namaController,
                   decoration: InputDecoration(
@@ -112,7 +114,6 @@ class _SignupPageState extends State<SignupPage> {
 
                 const SizedBox(height: 18),
 
-                // Email
                 TextField(
                   controller: emailController,
                   keyboardType: TextInputType.emailAddress,
@@ -128,7 +129,6 @@ class _SignupPageState extends State<SignupPage> {
 
                 const SizedBox(height: 18),
 
-                // Password
                 TextField(
                   controller: passwordController,
                   obscureText: !passwordVisible,
@@ -156,7 +156,6 @@ class _SignupPageState extends State<SignupPage> {
 
                 const SizedBox(height: 18),
 
-                // Konfirmasi Password
                 TextField(
                   controller: confirmPasswordController,
                   obscureText: !confirmPasswordVisible,
@@ -185,7 +184,6 @@ class _SignupPageState extends State<SignupPage> {
 
                 const SizedBox(height: 25),
 
-                // Tombol Daftar
                 SizedBox(
                   width: double.infinity,
                   height: 50,
@@ -210,7 +208,6 @@ class _SignupPageState extends State<SignupPage> {
 
                 const SizedBox(height: 15),
 
-                // Kembali ke Login
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

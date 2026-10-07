@@ -2,14 +2,68 @@ import 'package:flutter/material.dart';
 import 'signupPage.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final String? registeredEmail;
+  final String? registeredPassword;
+
+  const LoginPage({
+    super.key,
+    this.registeredEmail,
+    this.registeredPassword,
+  });
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   bool passwordVisible = false;
+
+  void login() {
+    if (emailController.text.isEmpty ||
+        passwordController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Email dan password harus diisi'),
+        ),
+      );
+      return;
+    }
+
+    if (widget.registeredEmail == null ||
+        widget.registeredPassword == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Silakan daftar akun terlebih dahulu'),
+        ),
+      );
+      return;
+    }
+
+    if (emailController.text == widget.registeredEmail &&
+        passwordController.text == widget.registeredPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Login berhasil'),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Email atau password salah'),
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +76,6 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 const SizedBox(height: 40),
 
-                // Logo
                 Image.asset(
                   'images/assets/logo.png',
                   width: 100,
@@ -51,8 +104,8 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 35),
 
-                // Email
                 TextField(
+                  controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -66,8 +119,8 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 20),
 
-                // Password
                 TextField(
+                  controller: passwordController,
                   obscureText: !passwordVisible,
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -93,7 +146,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 10),
 
-                // Lupa Password
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
@@ -109,12 +161,11 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 15),
 
-                // Tombol Login
                 SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: login,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                       foregroundColor: Colors.white,
@@ -134,7 +185,6 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 20),
 
-                // Daftar
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
