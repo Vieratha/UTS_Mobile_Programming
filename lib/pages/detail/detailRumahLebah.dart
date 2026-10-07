@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pembayaran_pembelian.dart';
-import 'pembayaran_rental.dart';
+import 'paymentPembelian.dart';
+import 'paymentRental.dart';
 
 class DetailRumahLebah extends StatelessWidget {
   const DetailRumahLebah({super.key});
