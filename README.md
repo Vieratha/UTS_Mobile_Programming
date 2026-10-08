@@ -1,17 +1,60 @@
-# project_uts
+# Libra Mobile — Pustaka Digital
 
-A new Flutter project.
+Libra Mobile merupakan aplikasi Pustaka Digital yang dikembangkan menggunakan Flutter untuk memenuhi Ujian Tengah Semester (UTS) mata kuliah Mobile Programming.
 
-## Getting Started
+Aplikasi ini dirancang untuk membantu pengguna dalam menemukan, mengeksplorasi, membaca, membeli, dan menyewa buku melalui satu aplikasi.
 
-This project is a starting point for a Flutter application.
+## Fitur Utama
 
-A few resources to get you started if this is your first Flutter project:
+- Pencarian buku berdasarkan judul, pengarang, dan kategori
+- Rekomendasi buku
+- Detail informasi buku
+- Pembacaan buku melalui halaman baca digital
+- Pembelian buku, termasuk pilihan buku fisik dan E-Book
+- Rental buku
+- Koleksi buku yang dimiliki dan rental aktif
+- Riwayat pembelian dan rental
+- Invoice transaksi
+- Pengelolaan profil dan akun
+- Pusat bantuan
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Halaman Aplikasi
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Struktur halaman utama Libra Mobile meliputi:
+
+- Welcome Page
+- Login Page
+- Sign Up Page
+- Home Page
+- Exploration / Pencarian
+- Detail Buku
+- Pembayaran Pembelian
+- Pembayaran Rental
+- Koleksi Buku
+- Baca Buku
+- Profile
+- Informasi Akun
+- Keamanan
+- Riwayat Pembelian
+- Riwayat Rental
+- Invoice Pembelian
+- Invoice Rental
+- Pusat Bantuan
+
+## Teknologi
+
+- Flutter
+- Dart
+
+## Struktur Project
+
+```text
+lib/
+├── pages/
+│   ├── auth/
+│   ├── collection/
+│   ├── detail/
+│   ├── exploration/
+│   ├── home/
+│   └── profile/
+└── main.dart
