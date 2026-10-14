@@ -166,7 +166,7 @@ class KoleksiRentalPage extends StatelessWidget {
 
             //Ini bagian Koleksi
             _BottomMenu(
-              icon: 'images/assets/books_collection_blue.png',
+              icon: 'images/assets/book_btn_blue.png',
               label: 'Koleksi',
               selected: true,
             ),
