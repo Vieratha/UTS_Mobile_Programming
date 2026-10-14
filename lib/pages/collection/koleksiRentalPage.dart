@@ -207,12 +207,13 @@ class _RentalBook extends StatelessWidget {
         //Ini bagian Cover Buku Rental
         AspectRatio(
           aspectRatio: 0.70,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Image.asset(
-              image,
-              width: double.infinity,
-              fit: BoxFit.cover,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              image: DecorationImage(
+                image: AssetImage(image),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
