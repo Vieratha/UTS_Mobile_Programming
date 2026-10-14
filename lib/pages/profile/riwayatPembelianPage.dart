@@ -105,7 +105,7 @@ class RiwayatPembelianPage extends StatelessWidget {
                   date: '8 Jun 2026',
                 ),
                 _TransactionCard(
-                  image: 'images/assets/guardians.webp',
+                  image: 'images/assets/connectgroup.png',
                   title: 'Connect Group Training 1',
                   author: 'Connect Group Gereja GMS Church',
                   type: 'Pembelian',

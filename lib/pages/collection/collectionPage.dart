@@ -228,7 +228,7 @@ class KoleksiPage extends StatelessWidget {
                     Expanded(
                       child: _BookItem(
                         image:
-                        'images/assets/guardians.webp',
+                        'images/assets/connectgroup.png',
                         title: 'Connect Group',
                         author: 'GMS Church',
                       ),

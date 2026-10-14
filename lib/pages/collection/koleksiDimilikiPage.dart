@@ -104,7 +104,7 @@ class KoleksiDimilikiPage extends StatelessWidget {
                               Expanded(
                                 child: _OwnedBook(
                                   image:
-                                  'images/assets/guardians.webp',
+                                  'images/assets/connectgroup.png',
                                   title:
                                   'Connect Group Training 1',
                                   author: 'GMS Church',

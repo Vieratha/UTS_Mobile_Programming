@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
     {
       'judul': 'Connect Group',
       'penulis': 'GMS Church',
-      'gambar': 'images/assets/guardians.webp',
+      'gambar': 'images/assets/connectgroup.png',
     },
     {
       'judul': 'Twelve Months',
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
     {
       'judul': 'Kurir Jiwa',
       'penulis': 'Hanif Mahaldi',
-      'gambar': 'images/assets/kebeletkaya.jpeg',
+      'gambar': 'images/assets/kurirjiwa.jpg',
     },
   ];
 
@@ -125,11 +125,11 @@ class _HomePageState extends State<HomePage> {
     {
       'judul': 'It Takes Two',
       'penulis': 'Niken Darcy',
-      'gambar': 'images/assets/guardians.webp',
+      'gambar': 'images/assets/ittakes.jpg',
     },
     {
-      'judul': 'The Wedding',
-      'penulis': 'Faitna YA',
+      'judul': 'Twelve Months',
+      'penulis': 'Jim Butcher',
       'gambar': 'images/assets/twelvemonths.jpg',
     },
   ];
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
       'gambar': 'images/assets/nightwing.jpg',
     },
     {
-      'judul': 'DCeased',
+      'judul': 'Injustice 2',
       'penulis': 'Tom Taylor',
       'gambar': 'images/assets/injustice2.jpg',
     },
