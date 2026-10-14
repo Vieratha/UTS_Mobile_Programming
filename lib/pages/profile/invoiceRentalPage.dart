@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class InvoiceRentalPage extends StatelessWidget {
@@ -58,7 +59,6 @@ class InvoiceRentalPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               //Ini bagian Header Invoice
               Row(
                 children: [
@@ -124,12 +124,15 @@ class InvoiceRentalPage extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
+                  Container(
+                    width: 72,
+                    height: 105,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
                     child: Image.asset(
                       imagePath,
-                      width: 72,
-                      height: 105,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
@@ -406,8 +409,9 @@ class _RentalRow extends StatelessWidget {
               value,
               style: TextStyle(
                 fontSize: 10,
-                fontWeight:
-                boldValue ? FontWeight.bold : FontWeight.normal,
+                fontWeight: boldValue
+                    ? FontWeight.bold
+                    : FontWeight.normal,
                 decoration: underline
                     ? TextDecoration.underline
                     : TextDecoration.none,

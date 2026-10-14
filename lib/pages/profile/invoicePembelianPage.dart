@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class InvoicePembelianPage extends StatelessWidget {
@@ -124,12 +125,15 @@ class InvoicePembelianPage extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
+                  Container(
+                    width: 72,
+                    height: 105,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
                     child: Image.asset(
                       imagePath,
-                      width: 72,
-                      height: 105,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Container(
